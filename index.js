@@ -1,9 +1,9 @@
-import checkWord from './checkWord.js';
+import feedback from './feedback.js';
 
-console.log(checkWord('hallå', 'cykla'));
+console.log(feedback('hallå', 'cykla'));
 
-// console.log(checkWord('hallå', 'hallå'));
+// console.log(feedback('hallå', 'hallå'));
 
-// console.log(checkWord('kärna', 'ändra'));
+// console.log(feedback('kärna', 'ändra'));
 
-// console.log(checkWord('asd', 'asdf'));
+// console.log(feedback('asd', 'asdf'));

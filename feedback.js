@@ -1,4 +1,4 @@
-function checkWord(guessed, answear) {
+function feedback(guessed, answear) {
   /*
     Check if guessed word is the answear
       - Make arr of guessed, answear and checked
@@ -37,4 +37,4 @@ function checkWord(guessed, answear) {
   return checkedArr;
 }
 
-export default checkWord;
+export default feedback;
