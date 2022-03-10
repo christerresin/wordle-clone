@@ -11,6 +11,10 @@ function checkWord(guessed, answear) {
   let answearArr = answear.toLowerCase().split('');
   let checkedArr = [];
 
+  if (guessed.length !== answear.length) {
+    return checkedArr;
+  }
+
   guessedArr.map((letter, index) => {
     const correct = letter === answearArr[index] ? true : false;
     correct
