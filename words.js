@@ -8,7 +8,9 @@ export const words = [
   'lie',
   'swim',
   'late',
+  'roll',
   'done',
+  'dull',
   'smell',
   'boxes',
   'raise',
@@ -24,4 +26,5 @@ export const words = [
   'misplaced',
   'strawberry',
   'firendship',
+  'parallell',
 ];
