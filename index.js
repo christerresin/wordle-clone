@@ -4,10 +4,4 @@ import { words } from './words.js';
 
 // console.log(feedback('hallå', 'cykla'));
 
-// console.log(feedback('hallå', 'hallå'));
-
-// console.log(feedback('kärna', 'ändra'));
-
-// console.log(feedback('asd', 'asdf'));
-
-pickWord(words, 4, false);
+console.log(pickWord(words, 6));

@@ -18,6 +18,8 @@ export const words = [
   'truth',
   'secure',
   'screen',
+  'endure',
+  'lernia',
   'landing',
   'correct',
   'computer',

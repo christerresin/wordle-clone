@@ -1,4 +1,4 @@
-function pickWord(wordArr, wordLength, norepeat) {
+function pickWord(wordArr, wordLength = 5, norepeat = false) {
   /*
     Needs to return a random word based on array of words, filtered by length and/or repeated letters in the word
     - Verify args are correct
@@ -33,10 +33,18 @@ function pickWord(wordArr, wordLength, norepeat) {
 
     filteredWordsArr.map((word, index) => {
       word.split('').map((letter, i) => {
-        letter === word[i + 1] ? filteredWordsArr.splice(index, 1) : '';
+        const match = letter === word[i + 1] ? true : false;
+        match ? filteredWordsArr.splice(index, 1) : '';
+        match ? wordArr.splice(index, 1) : '';
       });
     });
+
+    pickedWord = wordArr[Math.floor(Math.random() * wordArr.length)];
+  } else {
+    pickedWord = wordArr[Math.floor(Math.random() * wordArr.length)];
   }
+
+  return pickedWord;
 }
 
 export default pickWord;
