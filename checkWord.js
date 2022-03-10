@@ -9,6 +9,7 @@ function checkWord(guessed, answear) {
 
   let guessedArr = guessed.toLowerCase().split('');
   let answearArr = answear.toLowerCase().split('');
+  let correctFilteredArr = [...answearArr];
   let checkedArr = [];
 
   if (guessed.length !== answear.length) {
@@ -20,13 +21,17 @@ function checkWord(guessed, answear) {
     correct
       ? checkedArr.push({ letter: letter, result: 'correct' })
       : checkedArr.push({ letter: letter, result: 'incorrect' });
-    correct ? answearArr.splice(index, 1) : '';
+    correct
+      ? correctFilteredArr.splice(correctFilteredArr.indexOf(letter), 1)
+      : '';
   });
 
   guessedArr.map((letter, index) => {
-    const found = answearArr.indexOf(letter) >= 0 ? true : false;
+    const found = correctFilteredArr.indexOf(letter) >= 0 ? true : false;
     found ? (checkedArr[index].result = 'misplaced') : '';
-    found ? answearArr.splice(answearArr.indexOf(letter), 1) : '';
+    found
+      ? correctFilteredArr.splice(correctFilteredArr.indexOf(letter), 1)
+      : '';
   });
 
   return checkedArr;

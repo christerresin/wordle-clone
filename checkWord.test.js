@@ -1,18 +1,22 @@
 import checkWord from './checkWord';
 
-test('array is empty if guessed word and answear length dont match', () => {
+test('returned array is empty if guessed word and answear length dont match', () => {
   expect(checkWord('five', 'one')).toEqual([]);
 });
 
-test('array is same length as guessed word and answear if words length match', () => {
+test('returned array is same length as guessed word and answear if words length match', () => {
   expect(checkWord('qwerty', 'ytrewq').length).toBe(6);
 });
 
 test('guessed word "hålla" returns arr of objs with keys letter and result', () => {
-  expect(checkWord('hallå', 'cykla')).toEqual(resHallå);
+  expect(checkWord('hallå', 'cykla')).toEqual(resWrongWord);
 });
 
-const resHallå = [
+test('guessed word is correct word returned arr objs result keys value are all "correct"', () => {
+  expect(checkWord('hallå', 'hallå')).toStrictEqual(resCorrectWord);
+});
+
+const resWrongWord = [
   {
     letter: 'h',
     result: 'incorrect',
@@ -32,5 +36,28 @@ const resHallå = [
   {
     letter: 'å',
     result: 'incorrect',
+  },
+];
+
+const resCorrectWord = [
+  {
+    letter: 'h',
+    result: 'correct',
+  },
+  {
+    letter: 'a',
+    result: 'correct',
+  },
+  {
+    letter: 'l',
+    result: 'correct',
+  },
+  {
+    letter: 'l',
+    result: 'correct',
+  },
+  {
+    letter: 'å',
+    result: 'correct',
   },
 ];
