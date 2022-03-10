@@ -21,20 +21,22 @@ function pickWord(wordArr, wordLength, norepeat) {
 
   wordArr = wordArr.filter((word) => word.length === wordLength);
 
-  wordArr.map((word) => {
-    filteredWordsArr.push(
-      word
-        .split('')
-        .sort((a, b) => a.localeCompare(b))
-        .join('')
-    );
-  });
-
-  filteredWordsArr.map((word, index) => {
-    word.split('').map((letter, i) => {
-      letter === word[i + 1] ? filteredWordsArr.splice(index, 1) : '';
+  if (norepeat) {
+    wordArr.map((word) => {
+      filteredWordsArr.push(
+        word
+          .split('')
+          .sort((a, b) => a.localeCompare(b))
+          .join('')
+      );
     });
-  });
+
+    filteredWordsArr.map((word, index) => {
+      word.split('').map((letter, i) => {
+        letter === word[i + 1] ? filteredWordsArr.splice(index, 1) : '';
+      });
+    });
+  }
 }
 
 export default pickWord;
