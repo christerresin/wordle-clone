@@ -25,20 +25,11 @@ function checkWord(guessed, answear) {
 
   guessedArr.map((letter, index) => {
     const found = answearArr.indexOf(letter) >= 0 ? true : false;
-    // console.log(checkedArr[index].letter);
     found ? (checkedArr[index].result = 'misplaced') : '';
     found ? answearArr.splice(answearArr.indexOf(letter), 1) : '';
-    // console.log(answearArr);
   });
-
-  // console.log(guessedArr);
-  // console.log(answearArr);
-  // console.log(checkedArr);
 
   return checkedArr;
 }
-
-// checkWord('hallå', 'cykla');
-// checkWord('asd', 'dsa')
 
 export default checkWord;
