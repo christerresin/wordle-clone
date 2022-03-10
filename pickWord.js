@@ -38,11 +38,9 @@ function pickWord(wordArr, wordLength = 5, norepeat = false) {
         match ? wordArr.splice(index, 1) : '';
       });
     });
-
-    pickedWord = wordArr[Math.floor(Math.random() * wordArr.length)];
-  } else {
-    pickedWord = wordArr[Math.floor(Math.random() * wordArr.length)];
   }
+
+  pickedWord = wordArr[Math.floor(Math.random() * wordArr.length)];
 
   return pickedWord;
 }
