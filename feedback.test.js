@@ -31,6 +31,14 @@ test('if func is case sensitive', () => {
   expect(feedback('YOUWIN', 'youwin')).toStrictEqual(caseSensitiveWord);
 });
 
+test('returned arr is empty if guessed word is not a string', () => {
+  expect(feedback(5, 'test')).toEqual([]);
+});
+
+test('returned arr is empty if answear word is not a string', () => {
+  expect(feedback('test', 3)).toEqual([]);
+});
+
 const resWrongWord = [
   {
     letter: 'h',

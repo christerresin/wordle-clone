@@ -1,16 +1,22 @@
 function feedback(guessed, answear) {
   /*
     Check if guessed word is the answear
+      - Inputs are strings
       - Make arr of guessed, answear and checked
       - loop over guessed once and create arr of obj with letter, result > incorrect, correct. remove any correct letters from answearArr
       - loop over guessed again and find misplaced letters by index, update obj.result with missplaced for letter and remove letter from answear arr
     Return Arr
   */
 
+  let checkedArr = [];
+
+  if (typeof guessed !== 'string' || typeof answear !== 'string') {
+    return checkedArr;
+  }
+
   let guessedArr = guessed.toLowerCase().split('');
   let answearArr = answear.toLowerCase().split('');
   let correctFilteredArr = [...answearArr];
-  let checkedArr = [];
 
   if (guessed.length !== answear.length) {
     return checkedArr;
