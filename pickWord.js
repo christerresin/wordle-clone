@@ -42,7 +42,7 @@ function pickWord(wordArr, wordLength = 5, norepeat = false) {
 
   pickedWord = wordArr[Math.floor(Math.random() * wordArr.length)];
 
-  return pickedWord;
+  return pickedWord ? pickedWord : '';
 }
 
 export default pickWord;
