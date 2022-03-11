@@ -44,6 +44,6 @@ test('returned strings length matches default param value', () => {
 });
 
 const mockWordCase = ['STRONG'];
-const mockWordsThree = ['try', 'ice', 'four'];
+const mockWordsThree = ['try', 'ice', 'theme'];
 const mockWordsFive = ['sheep', 'trust', 'memory'];
 const mockDefaultLength = ['computer', 'crash', 'ice'];
