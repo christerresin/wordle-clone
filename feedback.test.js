@@ -8,7 +8,7 @@ import feedback from './feedback';
   - returned array has same length as words
   - if words dont match returned arr objs contains result incorrect, correct or misplaces for letters
   - func is not case sensitive
-
+  - returned arr is empty if guessed and/or answear string params are empty
 */
 
 test('returned array is empty if guessed word and answear length dont match', () => {
@@ -37,6 +37,14 @@ test('returned arr is empty if guessed word is not a string', () => {
 
 test('returned arr is empty if answear word is not a string', () => {
   expect(feedback('test', 3)).toEqual([]);
+});
+
+test('returned arr is empty if guessed string is empty', () => {
+  expect(feedback('', 'test')).toEqual([]);
+});
+
+test('returned arr is empty if answear string is empty', () => {
+  expect(feedback('test', '')).toEqual([]);
 });
 
 const resWrongWord = [
