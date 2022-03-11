@@ -12,9 +12,10 @@ function pickWord(wordArr, wordLength = 5, norepeat = false) {
   let filteredWordsArr = [];
 
   if (
-    wordArr.length < 1 &&
-    wordLength !== typeof 'number' &&
-    norepeat !== typeof 'boolean'
+    wordArr.length < 1 ||
+    (typeof wordArr !== 'object' &&
+      wordLength !== typeof 'number' &&
+      norepeat !== typeof 'boolean')
   ) {
     return pickedWord;
   }
@@ -42,7 +43,7 @@ function pickWord(wordArr, wordLength = 5, norepeat = false) {
 
   pickedWord = wordArr[Math.floor(Math.random() * wordArr.length)];
 
-  return pickedWord ? pickedWord : '';
+  return pickedWord ? pickedWord.toLowerCase() : '';
 }
 
 export default pickWord;
