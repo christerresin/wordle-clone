@@ -4,9 +4,16 @@ import { words } from './words.js';
 /*
   TEST
   - if returned string length matches given length filter
+  - if returned string length matches default param of 5
+  - if norepeat default param is false
   - if returned string does not havr no matching letters if norepeat filter is true
   - empty string is returned if no words arr is passed as param
   - empty string is returned if no words matched length filter param
+
+  With these test we check that the function returns a lower case string in all scenarios.
+  If no length or norepeat filter is set default values are used.
+  Length filter works and returned string matches given value.
+  If norepeat filter is set to true the returned string does not have any repeated chars
 */
 
 test('returned strings length is 5 and  matches given word length arg of 5', () => {
@@ -33,6 +40,11 @@ test('returned string is empty if no word in words arr matches length filter par
   expect(pickWord(mockWordsThree, 4)).toEqual('');
 });
 
+test('returned strings length matches default param value', () => {
+  expect(pickWord(mockDefaultLength).length).toBe(5);
+});
+
 const mockWordCase = ['STRONG'];
-const mockWordsThree = ['try', 'ice'];
+const mockWordsThree = ['try', 'ice', 'four'];
 const mockWordsFive = ['sheep', 'trust'];
+const mockDefaultLength = ['computer', 'crash', 'ice'];
