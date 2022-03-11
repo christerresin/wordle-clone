@@ -1,5 +1,4 @@
 import pickWord from './pickWord.js';
-import { words } from './words.js';
 
 /*
   TEST
@@ -46,5 +45,5 @@ test('returned strings length matches default param value', () => {
 
 const mockWordCase = ['STRONG'];
 const mockWordsThree = ['try', 'ice', 'four'];
-const mockWordsFive = ['sheep', 'trust'];
+const mockWordsFive = ['sheep', 'trust', 'memory'];
 const mockDefaultLength = ['computer', 'crash', 'ice'];

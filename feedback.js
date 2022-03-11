@@ -10,7 +10,12 @@ function feedback(guessed, answear) {
 
   let checkedArr = [];
 
-  if (typeof guessed !== 'string' || typeof answear !== 'string') {
+  if (
+    typeof guessed !== 'string' ||
+    typeof answear !== 'string' ||
+    guessed.length <= 0 ||
+    answear.length <= 0
+  ) {
     return checkedArr;
   }
 
