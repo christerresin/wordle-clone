@@ -11,6 +11,7 @@ function pickWord(wordArr, wordLength = 5, norepeat = false) {
   let pickedWord = '';
   let filteredWordsArr = [];
 
+  // Conditionals for args
   if (
     wordArr.length < 1 ||
     (typeof wordArr !== 'object' &&
@@ -20,9 +21,12 @@ function pickWord(wordArr, wordLength = 5, norepeat = false) {
     return pickedWord;
   }
 
+  // Length filter for words Arr
   wordArr = wordArr.filter((word) => word.length === wordLength);
 
+  // Norepeat filter for words Arr to remove all words that includes matching chars
   if (norepeat) {
+    // Sort word ascend
     wordArr.map((word) => {
       filteredWordsArr.push(
         word
@@ -31,7 +35,7 @@ function pickWord(wordArr, wordLength = 5, norepeat = false) {
           .join('')
       );
     });
-
+    // Compare chars for equal value and filter
     filteredWordsArr.map((word, index) => {
       word.split('').map((letter, i) => {
         const match = letter === word[i + 1] ? true : false;
@@ -41,6 +45,7 @@ function pickWord(wordArr, wordLength = 5, norepeat = false) {
     });
   }
 
+  // Randomizer
   pickedWord = wordArr[Math.floor(Math.random() * wordArr.length)];
 
   return pickedWord ? pickedWord.toLowerCase() : '';

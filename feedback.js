@@ -10,11 +10,13 @@ function feedback(guessed, answear) {
 
   let checkedArr = [];
 
+  // Conditionals for arg strings (length, type, matching length)
   if (
     typeof guessed !== 'string' ||
     typeof answear !== 'string' ||
     guessed.length <= 0 ||
-    answear.length <= 0
+    answear.length <= 0 ||
+    guessed.length !== answear.length
   ) {
     return checkedArr;
   }
@@ -23,10 +25,7 @@ function feedback(guessed, answear) {
   let answearArr = answear.toLowerCase().split('');
   let correctFilteredArr = [...answearArr];
 
-  if (guessed.length !== answear.length) {
-    return checkedArr;
-  }
-
+  // Logic to set correct/incorrect letters in objArr and remove correct for next pass
   guessedArr.map((letter, index) => {
     const correct = letter === answearArr[index] ? true : false;
     correct
@@ -37,6 +36,7 @@ function feedback(guessed, answear) {
       : '';
   });
 
+  // Logic to check if any incorrect letters are misplaced and update values in objArr
   guessedArr.map((letter, index) => {
     const found = correctFilteredArr.indexOf(letter) >= 0 ? true : false;
     found ? (checkedArr[index].result = 'misplaced') : '';
