@@ -20,15 +20,82 @@ test('returned array is same length as guessed word and answear if words length 
 });
 
 test('guessed word "hålla" returns arr of objs with keys letter and result', () => {
-  expect(feedback('hallå', 'cykla')).toEqual(resWrongWord);
+  expect(feedback('hallå', 'cykla')).toEqual([
+    {
+      letter: 'h',
+      result: 'incorrect',
+    },
+    {
+      letter: 'a',
+      result: 'misplaced',
+    },
+    {
+      letter: 'l',
+      result: 'incorrect',
+    },
+    {
+      letter: 'l',
+      result: 'correct',
+    },
+    {
+      letter: 'å',
+      result: 'incorrect',
+    },
+  ]);
 });
 
 test('guessed word is correct word returned arr objs result keys value are all "correct"', () => {
-  expect(feedback('hallå', 'hallå')).toStrictEqual(resCorrectWord);
+  expect(feedback('hallå', 'hallå')).toStrictEqual([
+    {
+      letter: 'h',
+      result: 'correct',
+    },
+    {
+      letter: 'a',
+      result: 'correct',
+    },
+    {
+      letter: 'l',
+      result: 'correct',
+    },
+    {
+      letter: 'l',
+      result: 'correct',
+    },
+    {
+      letter: 'å',
+      result: 'correct',
+    },
+  ]);
 });
 
 test('if func is case sensitive', () => {
-  expect(feedback('YOUWIN', 'youwin')).toStrictEqual(caseSensitiveWord);
+  expect(feedback('YOUWIN', 'youwin')).toStrictEqual([
+    {
+      letter: 'y',
+      result: 'correct',
+    },
+    {
+      letter: 'o',
+      result: 'correct',
+    },
+    {
+      letter: 'u',
+      result: 'correct',
+    },
+    {
+      letter: 'w',
+      result: 'correct',
+    },
+    {
+      letter: 'i',
+      result: 'correct',
+    },
+    {
+      letter: 'n',
+      result: 'correct',
+    },
+  ]);
 });
 
 test('returned arr is empty if guessed word is not a string', () => {
@@ -46,76 +113,3 @@ test('returned arr is empty if guessed string is empty', () => {
 test('returned arr is empty if answear string is empty', () => {
   expect(feedback('test', '')).toEqual([]);
 });
-
-const resWrongWord = [
-  {
-    letter: 'h',
-    result: 'incorrect',
-  },
-  {
-    letter: 'a',
-    result: 'misplaced',
-  },
-  {
-    letter: 'l',
-    result: 'incorrect',
-  },
-  {
-    letter: 'l',
-    result: 'correct',
-  },
-  {
-    letter: 'å',
-    result: 'incorrect',
-  },
-];
-
-const resCorrectWord = [
-  {
-    letter: 'h',
-    result: 'correct',
-  },
-  {
-    letter: 'a',
-    result: 'correct',
-  },
-  {
-    letter: 'l',
-    result: 'correct',
-  },
-  {
-    letter: 'l',
-    result: 'correct',
-  },
-  {
-    letter: 'å',
-    result: 'correct',
-  },
-];
-
-const caseSensitiveWord = [
-  {
-    letter: 'y',
-    result: 'correct',
-  },
-  {
-    letter: 'o',
-    result: 'correct',
-  },
-  {
-    letter: 'u',
-    result: 'correct',
-  },
-  {
-    letter: 'w',
-    result: 'correct',
-  },
-  {
-    letter: 'i',
-    result: 'correct',
-  },
-  {
-    letter: 'n',
-    result: 'correct',
-  },
-];
