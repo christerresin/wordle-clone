@@ -1,4 +1,4 @@
-import feedback from './feedback';
+import feedback from './server/feedback';
 
 /*
 

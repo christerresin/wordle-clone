@@ -1,4 +1,4 @@
-import feedback from './feedback.js';
+import feedback from './server/feedback.js';
 import pickWord from './pickWord.js';
 import { words } from './words.js';
 
