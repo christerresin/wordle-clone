@@ -1,5 +1,4 @@
 import { useEffect, useState } from 'react';
-import logo from './logo.svg';
 import './App.css';
 
 /*
@@ -12,19 +11,35 @@ import './App.css';
 */
 
 function App() {
-  const [guess, setGuess] = useState([]);
+  const [result, setResult] = useState([]);
+  const [guess, setGuess] = useState('vafan');
+  const [wordLength, setWordLength] = useState(5);
+  const [uniqueLetters, setUniqueLetters] = useState(false);
 
   useEffect(() => {
-    fetch('/api/mount-5-false')
+    fetch(`/api/words/${guess}-${wordLength}-${uniqueLetters}`)
       .then((res) => res.json())
-      .then((data) => setGuess(data.message));
-  }, []);
+      .then((data) => setResult(data.message));
+  }, [wordLength, uniqueLetters]);
+
+  useEffect(() => {
+    fetch(`/api/${guess}`)
+      .then((res) => res.json())
+      .then((data) => setResult(data.message));
+  }, [guess]);
+
+  const handleOnChange = (event) => {
+    let guessedWord = event.target.value;
+    if (guessedWord.length === wordLength) {
+      setGuess(guessedWord);
+    }
+  };
 
   return (
     <div className='App'>
       <header className='App-header'>
         <ul>
-          {guess.map((obj, index) => {
+          {result.map((obj, index) => {
             return (
               <li className={obj.result} key={obj.letter + index}>
                 {obj.letter.toUpperCase()}
@@ -32,7 +47,7 @@ function App() {
             );
           })}
         </ul>
-        <p>{!guess ? 'loading...' : console.log(guess)}</p>
+        <input type='text' onChange={handleOnChange} />
       </header>
     </div>
   );
