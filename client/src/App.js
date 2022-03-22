@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 
 import WordsList from './components/WordsList';
+import WordInput from './components/WordInput';
 
 import './App.css';
 
@@ -39,8 +40,8 @@ function App() {
       });
   }, [guess]);
 
-  const handleOnChange = (event) => {
-    let guessedWord = event.target.value;
+  const handleInputChange = (input) => {
+    let guessedWord = input;
     if (guessedWord.length === wordLength) {
       setGuess(guessedWord);
     }
@@ -51,7 +52,10 @@ function App() {
       <header className='App-header'>
         <WordsList result={result} guessedWords={guessedWords} />
 
-        <input type='text' onChange={handleOnChange} />
+        <WordInput
+          handleInputChange={handleInputChange}
+          wordLength={wordLength}
+        />
       </header>
     </div>
   );
