@@ -27,7 +27,6 @@ app.get('/api/words/:guess', (req, res) => {
 });
 
 app.post('/api/words/:guess-:wordLength-:uniqueLetters', (req, res) => {
-  let guess = req.params.guess;
   let wordLength = Number(req.params.wordLength);
   let uniqueLetters = req.params.uniqueLetters === 'false' ? false : true;
   correctWord = pickWord(words, wordLength, uniqueLetters);
