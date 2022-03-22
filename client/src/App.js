@@ -51,7 +51,6 @@ function App() {
     <div className='App'>
       <header className='App-header'>
         <WordsList result={result} guessedWords={guessedWords} />
-
         <WordInput
           handleInputChange={handleInputChange}
           wordLength={wordLength}
