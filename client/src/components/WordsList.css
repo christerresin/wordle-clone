@@ -1,0 +1,9 @@
+.app__wordsList-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.app__wordsList-item {
+  display: flex;
+  flex-direction: row;
+}
