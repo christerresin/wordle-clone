@@ -17,21 +17,3 @@ ul {
   list-style-type: none;
   padding: 0;
 }
-
-li {
-  margin: 0 1rem 0 1rem;
-  font-size: 2rem;
-  font-weight: 800;
-}
-
-.correct {
-  color: green;
-}
-
-.incorrect {
-  color: red;
-}
-
-.misplaced {
-  color: yellow;
-}

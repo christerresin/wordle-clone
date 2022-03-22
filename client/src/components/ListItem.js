@@ -1,9 +1,14 @@
+import './ListItem.css';
+
 function ListItem({ word }) {
   return (
     <ul className='app__wordsList-item'>
       {word.map((obj, index) => {
         return (
-          <li className={obj.result} key={obj.letter + index}>
+          <li
+            className={`app__wordsList-letterBox ${obj.result}`}
+            key={obj.letter + index}
+          >
             {obj.letter.toUpperCase()}
           </li>
         );

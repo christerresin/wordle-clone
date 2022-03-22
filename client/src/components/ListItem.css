@@ -1,0 +1,30 @@
+.app__wordsList-item {
+  display: flex;
+  flex-direction: row;
+  background-color: aliceblue;
+}
+
+.app__wordsList-letterBox {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 2px solid gray;
+  border-radius: 5px;
+  margin: 0.2rem;
+  height: 3rem;
+  width: 3rem;
+  font-size: 2.2rem;
+  font-weight: 700;
+}
+
+.incorrect {
+  background-color: rgb(54, 54, 54);
+}
+
+.correct {
+  background-color: rgb(83, 199, 83);
+}
+
+.misplaced {
+  background-color: rgb(235, 235, 118);
+}
