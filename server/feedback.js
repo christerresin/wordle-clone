@@ -33,16 +33,18 @@ function feedback(guessed, answear) {
       : checkedArr.push({ letter: letter, result: 'incorrect' });
     correct
       ? correctFilteredArr.splice(correctFilteredArr.indexOf(letter), 1)
-      : '';
+      : null;
   });
 
   // Logic to check if any incorrect letters are misplaced and update values in objArr
   guessedArr.map((letter, index) => {
     const found = correctFilteredArr.indexOf(letter) >= 0 ? true : false;
-    found ? (checkedArr[index].result = 'misplaced') : '';
+    found && checkedArr[index].result !== 'correct'
+      ? (checkedArr[index].result = 'misplaced')
+      : null;
     found
       ? correctFilteredArr.splice(correctFilteredArr.indexOf(letter), 1)
-      : '';
+      : null;
   });
 
   return checkedArr;

@@ -23,11 +23,18 @@ function WordInput(props) {
     }
   };
 
-  return isWinner ? (
-    <p>WINNER!</p>
-  ) : (
-    <input type='text' value={guess} onChange={handleOnChange} />
-  );
+  const renderInputs = () => {
+    return isWinner ? (
+      <>
+        <p>WINNER!</p>
+        <input type='text' placeholder='Enter your name' />
+      </>
+    ) : (
+      <input type='text' value={guess} onChange={handleOnChange} />
+    );
+  };
+
+  return renderInputs();
 }
 
 export default WordInput;
