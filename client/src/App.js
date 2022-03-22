@@ -12,7 +12,8 @@ import './App.css';
 
 function App() {
   const [result, setResult] = useState([]);
-  const [guess, setGuess] = useState('vafan');
+  const [guess, setGuess] = useState(null);
+  const [guessedWords, setGuessedWords] = useState([]);
   const [wordLength, setWordLength] = useState(5);
   const [uniqueLetters, setUniqueLetters] = useState(false);
 
@@ -25,7 +26,10 @@ function App() {
   useEffect(() => {
     fetch(`/api/${guess}`)
       .then((res) => res.json())
-      .then((data) => setResult(data.message));
+      .then((data) => {
+        setResult(data.message);
+        setGuessedWords([...guessedWords, data.message]);
+      });
   }, [guess]);
 
   const handleOnChange = (event) => {
