@@ -18,13 +18,15 @@ function App() {
   const [uniqueLetters, setUniqueLetters] = useState(false);
 
   useEffect(() => {
-    fetch(`/api/words/${guess}-${wordLength}-${uniqueLetters}`)
+    fetch(`/api/words/${guess}-${wordLength}-${uniqueLetters}`, {
+      method: 'POST',
+    })
       .then((res) => res.json())
-      .then((data) => setResult(data.message));
+      .then((data) => console.log(data.message));
   }, [wordLength, uniqueLetters]);
 
   useEffect(() => {
-    fetch(`/api/${guess}`)
+    fetch(`/api/words/${guess}`)
       .then((res) => res.json())
       .then((data) => {
         setResult(data.message);

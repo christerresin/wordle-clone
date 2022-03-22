@@ -22,18 +22,18 @@ app.get('/api', (req, res) => {
   res.json({ message: feedback(guess, correctWord) });
 });
 
-app.get('/api/:guess', (req, res) => {
+app.get('/api/words/:guess', (req, res) => {
   res.json({ message: feedback(req.params.guess, correctWord) });
 });
 
-app.get('/api/words/:guess-:wordLength-:uniqueLetters', (req, res) => {
+app.post('/api/words/:guess-:wordLength-:uniqueLetters', (req, res) => {
   let guess = req.params.guess;
   let wordLength = Number(req.params.wordLength);
   let uniqueLetters = req.params.uniqueLetters === 'false' ? false : true;
   correctWord = pickWord(words, wordLength, uniqueLetters);
 
   res.json({
-    message: feedback(guess, correctWord),
+    message: 'GAME STARTED:' + correctWord,
   });
 });
 
