@@ -1,7 +1,18 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 function WordInput(props) {
   const [guess, setGuess] = useState('');
+  const [isWinner, setIsWinner] = useState(false);
+
+  useEffect(() => {
+    setIsWinner(
+      props.result.filter((obj) => {
+        return obj.result === 'correct';
+      }).length === 5
+        ? true
+        : false
+    );
+  });
 
   const handleOnChange = (event) => {
     let guessedWord = event.target.value;
@@ -12,7 +23,11 @@ function WordInput(props) {
     }
   };
 
-  return <input type='text' value={guess} onChange={handleOnChange} />;
+  return isWinner ? (
+    <p>WINNER!</p>
+  ) : (
+    <input type='text' value={guess} onChange={handleOnChange} />
+  );
 }
 
 export default WordInput;

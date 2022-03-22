@@ -40,13 +40,6 @@ function App() {
       });
   }, [guess]);
 
-  const isWinner =
-    result.filter((obj) => {
-      return obj.result === 'correct';
-    }).length === 5
-      ? true
-      : false;
-
   const handleInputChange = (input) => {
     let guessedWord = input;
     if (guessedWord.length === wordLength) {
@@ -61,6 +54,7 @@ function App() {
         <WordInput
           handleInputChange={handleInputChange}
           wordLength={wordLength}
+          result={result}
         />
       </header>
     </div>
