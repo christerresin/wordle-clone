@@ -1,13 +1,44 @@
 import express from 'express';
 import crypto from 'crypto';
+import mongoose from 'mongoose';
 
 import feedback from './feedback.js';
 import pickWord from './pickWord.js';
 import { words } from './words.js';
+import Highscore from './Highscore.js';
 
 const PORT = process.env.PORT || 3001;
 
 const app = express();
+
+// connect to mongoDB
+const dbURI = `mongodb+srv://christerresin:TB8WIHS0PR755uXn@wordledb.phlpc.mongodb.net/wordledb?retryWrites=true&w=majority`;
+mongoose.connect(dbURI, () => {
+  console.log('connected');
+});
+
+async function run() {
+  try {
+    const highscore = new Highscore({ playerId: 'Hello' });
+    await highscore.save();
+    console.log(highscore);
+  } catch (e) {
+    console.log(e.message);
+  }
+}
+// run();
+
+async function deleteHighscore() {
+  try {
+    const highscore = await Highscore.find({ playerId: 'Hello' });
+
+    highscore[0].save({ playerId: 'BoB' });
+    console.log(highscore);
+  } catch (e) {
+    console.log(e.message);
+  }
+}
+deleteHighscore();
 
 /*
   - Get guess from frontend
@@ -39,6 +70,7 @@ app.post('/api/words/:guess-:wordLength-:uniqueLetters', (req, res) => {
   games.push({
     correctWord: correctWord,
     gameId: gameId,
+    gameStart: new Date(),
   });
 
   res.json({
@@ -47,7 +79,14 @@ app.post('/api/words/:guess-:wordLength-:uniqueLetters', (req, res) => {
   });
 });
 
-app.post('/highscore', (req, res) => {});
+app.post('/highscore', (req, res) => {
+  /*
+    - check post body for obj with playerId and gameId
+    - create obj with highscore data (playerId, gameStart, gameEnd, guessesCount, correctWord,  wordLength, uniqueLetters) and push to highscores Arr
+    - redirect user to /highscores
+    - find index of gameId obj in games Arr and splice
+  */
+});
 
 app.listen(PORT, () => {
   console.log(`Server listening on ${PORT}`);
