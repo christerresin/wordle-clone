@@ -51,6 +51,16 @@ function App() {
     }
   };
 
+  const handleWinner = (status) => {
+    if (status === true) {
+      fetch(`/api/highscore`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ highscore: 'over 9000' }),
+      }).then((response) => response.json());
+    }
+  };
+
   return (
     <div className='App'>
       <header className='App-header'>
@@ -59,6 +69,7 @@ function App() {
           handleInputChange={handleInputChange}
           wordLength={wordLength}
           result={result}
+          handleWinner={handleWinner}
         />
       </header>
     </div>

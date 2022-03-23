@@ -34,6 +34,7 @@ function WordInput(props) {
       <>
         <p>WINNER!</p>
         <input type='text' placeholder='Enter your name' />
+        {props.handleWinner(true)}
       </>
     ) : (
       <input type='text' value={guess} onChange={handleOnChange} />

@@ -1,6 +1,7 @@
 import express from 'express';
 import crypto from 'crypto';
 import mongoose from 'mongoose';
+import bodyParser from 'body-parser';
 
 import feedback from './feedback.js';
 import pickWord from './pickWord.js';
@@ -10,6 +11,9 @@ import Highscore from './Highscore.js';
 const PORT = process.env.PORT || 3001;
 
 const app = express();
+
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: false }));
 
 // connect to mongoDB
 const dbURI = `mongodb+srv://christerresin:TB8WIHS0PR755uXn@wordledb.phlpc.mongodb.net/wordledb?retryWrites=true&w=majority`;
@@ -80,7 +84,8 @@ app.post('/api/words/:guess-:wordLength-:uniqueLetters', (req, res) => {
   });
 });
 
-app.post('/highscore', (req, res) => {
+app.post('/api/highscore', (req, res) => {
+  console.log('Got body: ' + req.body);
   /*
     - check post body for obj with playerId and gameId
     - create obj with highscore data (playerId, gameStart, gameEnd, guessesCount, correctWord,  wordLength, uniqueLetters) and push to highscores Arr
