@@ -1,4 +1,5 @@
 import express from 'express';
+import crypto from 'crypto';
 
 import feedback from './feedback.js';
 import pickWord from './pickWord.js';
@@ -16,25 +17,37 @@ const app = express();
   - post winner route
 */
 
-let correctWord = '';
+let games = [{ gameId: '12312', correctWord: 'NOTCORRECT' }];
 
 app.get('/api', (req, res) => {
   res.json({ message: feedback(guess, correctWord) });
 });
 
-app.get('/api/words/:guess', (req, res) => {
-  res.json({ message: feedback(req.params.guess, correctWord) });
+app.get('/api/words/:gameid/:guess', (req, res) => {
+  const correctGameObj = games.find((obj) => {
+    return obj.gameId === req.params.gameid;
+  });
+
+  res.json({ message: feedback(req.params.guess, correctGameObj.correctWord) });
 });
 
 app.post('/api/words/:guess-:wordLength-:uniqueLetters', (req, res) => {
   let wordLength = Number(req.params.wordLength);
   let uniqueLetters = req.params.uniqueLetters === 'false' ? false : true;
-  correctWord = pickWord(words, wordLength, uniqueLetters);
+  let correctWord = pickWord(words, wordLength, uniqueLetters);
+  let gameId = crypto.randomUUID();
+  games.push({
+    correctWord: correctWord,
+    gameId: gameId,
+  });
 
   res.json({
-    message: 'GAME STARTED:' + correctWord,
+    gameId: gameId,
+    message: correctWord,
   });
 });
+
+app.post('/highscore', (req, res) => {});
 
 app.listen(PORT, () => {
   console.log(`Server listening on ${PORT}`);

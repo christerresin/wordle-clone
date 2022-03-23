@@ -8,4 +8,4 @@ import { words } from './server/words.js';
 
 // console.log(feedback('cykla', 5));
 
-console.log(feedback('trump', 'truth'));
+// console.log(feedback('trump', 'truth'));

@@ -17,20 +17,24 @@ import './App.css';
 function App() {
   const [result, setResult] = useState([]);
   const [guess, setGuess] = useState(null);
-  const [guessedWords, setGuessedWords] = useState(null);
+  const [guessedWords, setGuessedWords] = useState([]);
   const [wordLength, setWordLength] = useState(5);
   const [uniqueLetters, setUniqueLetters] = useState(false);
+  const [gameId, setGameId] = useState('');
 
   useEffect(() => {
     fetch(`/api/words/${guess}-${wordLength}-${uniqueLetters}`, {
       method: 'POST',
     })
       .then((res) => res.json())
-      .then((data) => console.log(data.message));
+      .then((data) => {
+        console.log(data.message);
+        setGameId(data.gameId);
+      });
   }, [wordLength, uniqueLetters]);
 
   useEffect(() => {
-    fetch(`/api/words/${guess}`)
+    fetch(`/api/words/${gameId}/${guess}`)
       .then((res) => res.json())
       .then((data) => {
         setResult(data.message);

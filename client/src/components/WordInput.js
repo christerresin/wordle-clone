@@ -14,6 +14,12 @@ function WordInput(props) {
     );
   });
 
+  // useEffect(() => {
+  //   console.log(
+  //     Math.abs((new Date().getTime() - gameDuration.start.getTime()) / 1000)
+  //   );
+  // }, [gameDuration]);
+
   const handleOnChange = (event) => {
     let guessedWord = event.target.value;
     setGuess(guessedWord);
