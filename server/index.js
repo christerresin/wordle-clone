@@ -19,7 +19,7 @@ mongoose.connect(dbURI, () => {
 
 async function run() {
   try {
-    const highscore = new Highscore({ playerId: 'Hello' });
+    const highscore = new Highscore({ playerId: 'Mark' });
     await highscore.save();
     console.log(highscore);
   } catch (e) {
@@ -30,15 +30,16 @@ async function run() {
 
 async function deleteHighscore() {
   try {
-    const highscore = await Highscore.find({ playerId: 'Hello' });
+    const highscore = await Highscore.find({ playerId: 'Bob' });
 
-    highscore[0].save({ playerId: 'BoB' });
+    highscore[0].playerId = 'Bob';
+    highscore[0].delete();
     console.log(highscore);
   } catch (e) {
     console.log(e.message);
   }
 }
-deleteHighscore();
+// deleteHighscore();
 
 /*
   - Get guess from frontend
