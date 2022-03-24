@@ -79,7 +79,10 @@ function App() {
   };
 
   const loadHighscores = (status) => {
-    setLoading(status);
+    if (status === true) {
+      setLoading(status);
+      setHighscores(['YUPP']);
+    }
   };
 
   const renderGameBoard = () => {
@@ -87,7 +90,7 @@ function App() {
       <>
         <WordsList guessedWords={guessedWords} />
         {isWinner ? (
-          <PlayerInput gameObj={gameObj} />
+          <PlayerInput gameObj={gameObj} loadHighscores={loadHighscores} />
         ) : (
           <WordInput
             handleInputChange={handleInputChange}
