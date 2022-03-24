@@ -78,9 +78,13 @@ function App() {
     }
   };
 
-  return (
-    <div className='App'>
-      <header className='App-header'>
+  const loadHighscores = (status) => {
+    setLoading(status);
+  };
+
+  const renderGameBoard = () => {
+    return (
+      <>
         <WordsList guessedWords={guessedWords} />
         {isWinner ? (
           <PlayerInput gameObj={gameObj} />
@@ -91,6 +95,22 @@ function App() {
             result={result}
           />
         )}
+      </>
+    );
+  };
+
+  const renderHighscores = () => {
+    return (
+      <>
+        <h1>HIGHSCORES!</h1>
+      </>
+    );
+  };
+
+  return (
+    <div className='App'>
+      <header className='App-header'>
+        {highscores ? renderHighscores() : renderGameBoard()}
       </header>
     </div>
   );
