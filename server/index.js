@@ -1,12 +1,16 @@
 import express from 'express';
 import crypto from 'crypto';
-import mongoose from 'mongoose';
 import bodyParser from 'body-parser';
 
 import feedback from './feedback.js';
 import pickWord from './pickWord.js';
 import { words } from './words.js';
-import Highscore from './Highscore.js';
+import {
+  createNewHighscore,
+  getAllHighscores,
+  deleteAllHighscores,
+  getHighscores,
+} from './db/Controller.js';
 
 const PORT = process.env.PORT || 3001;
 
@@ -15,36 +19,6 @@ const app = express();
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 
-// connect to mongoDB
-const dbURI = `mongodb+srv://christerresin:TB8WIHS0PR755uXn@wordledb.phlpc.mongodb.net/wordledb?retryWrites=true&w=majority`;
-mongoose.connect(dbURI, () => {
-  console.log('connected');
-});
-
-async function run() {
-  try {
-    const highscore = new Highscore({ playerId: 'Mark' });
-    await highscore.save();
-    console.log(highscore);
-  } catch (e) {
-    console.log(e.message);
-  }
-}
-// run();
-
-async function deleteHighscore() {
-  try {
-    const highscore = await Highscore.find({ playerId: 'Bob' });
-
-    highscore[0].playerId = 'Bob';
-    highscore[0].delete();
-    console.log(highscore);
-  } catch (e) {
-    console.log(e.message);
-  }
-}
-// deleteHighscore();
-
 /*
   - Get guess from frontend
   - pick random correctWord and keep it hidden (not using global var on server)
@@ -52,6 +26,20 @@ async function deleteHighscore() {
   - if all correct, obj with timeStamps et.c
   - post winner route
 */
+
+// await createNewHighscore(
+//   'Lisa',
+//   new Date().getTime() / 1000,
+//   new Date().getTime() / 1000,
+//   2,
+//   5,
+//   'smell',
+//   false
+// );
+
+// console.log(await getAllHighscores());
+// deleteAllHighscores();
+getHighscores('Neo');
 
 let games = [{ gameId: '12312', correctWord: 'NOTCORRECT' }];
 
