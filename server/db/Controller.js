@@ -8,15 +8,15 @@ mongoose.connect(dbURI, () => {
   console.log('DB connected');
 });
 
-async function createNewHighscore(
-  playerId,
-  gameStart,
-  gameEnd,
-  guessesCount,
-  wordLength,
-  correctWord,
-  uniqueLetters
-) {
+async function createNewHighscore(playerObj) {
+  const playerId = playerObj.playerId;
+  const gameStart = playerObj.gameStart;
+  const gameEnd = playerObj.gameEnd;
+  const guessesCount = playerObj.guessesCountd;
+  const wordLength = playerObj.wordLength;
+  const correctWord = playerObj.correctWord;
+  const uniqueLetters = playerObj.uniqueLetters;
+  const gameId = playerObj.gameId;
   try {
     // Edit below gameDuration calc when correct gameEnd and gameStart values as passed down
     const gameDuration = gameEnd + 4000 - gameStart;
@@ -27,6 +27,7 @@ async function createNewHighscore(
       wordLength: wordLength,
       correctWord: correctWord,
       uniqueLetters: uniqueLetters,
+      gameId: gameId,
     });
     await highscore.save();
     console.log(highscore);

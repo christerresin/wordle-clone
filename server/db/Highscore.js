@@ -7,6 +7,7 @@ const userSchema = new mongoose.Schema({
   wordLength: { type: Number, required: false },
   correctWord: { type: String, required: false },
   uniqueLetters: { type: Boolean, required: false },
+  gameId: { type: String, required: false },
 });
 
 export default mongoose.model('Highscore', userSchema);

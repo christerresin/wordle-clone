@@ -39,9 +39,12 @@ app.use(bodyParser.urlencoded({ extended: false }));
 
 // console.log(await getAllHighscores());
 // deleteAllHighscores();
-getHighscores('Neo');
+// getHighscores('Lisa');
 
-let games = [{ gameId: '12312', correctWord: 'NOTCORRECT' }];
+let games = [
+  { gameId: '12312', correctWord: 'NOTCORRECT' },
+  { gameId: '12312', correctWord: 'NOTCORRECT' },
+];
 
 app.get('/api', (req, res) => {
   res.json({ message: feedback(guess, correctWord) });
@@ -72,8 +75,21 @@ app.post('/api/words/:guess-:wordLength-:uniqueLetters', (req, res) => {
   });
 });
 
+app.get('/highscore', (req, res) => {
+  res.send('HIGHSCORES');
+});
+
 app.post('/api/highscore', (req, res) => {
-  console.log('Got body: ' + req.body);
+  const gameId = req.body.gameId;
+  const game = games.find((obj) => {
+    return obj.gameId === gameId;
+  });
+  const playerObj = { ...req.body, correctWord: game.correctWord };
+  const gameIdx = games.findIndex((obj) => {
+    return obj.gameId === gameId;
+  });
+  createNewHighscore(playerObj);
+
   /*
     - check post body for obj with playerId and gameId
     - create obj with highscore data (playerId, gameStart, gameEnd, guessesCount, correctWord,  wordLength, uniqueLetters) and push to highscores Arr
