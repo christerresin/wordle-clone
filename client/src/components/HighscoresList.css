@@ -1,0 +1,16 @@
+.app__highscoreslist-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.app__highscoreslist-item {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+p {
+  width: 15vw;
+  margin: 0 2rem;
+  text-align: start;
+}

@@ -3,6 +3,7 @@ import { useEffect, useState } from 'react';
 import WordsList from './components/WordsList';
 import WordInput from './components/WordInput';
 import PlayerInput from './components/PlayerInput';
+import HighscoresList from './components/HighscoresList';
 
 import './App.css';
 
@@ -74,6 +75,10 @@ function App() {
     );
   }, [result]);
 
+  useEffect(() => {
+    console.log('HIGHSCORE: ' + highscores);
+  }, [highscores]);
+
   const handleInputChange = (input) => {
     let guessedWord = input;
     if (guessedWord.length === wordLength) {
@@ -84,13 +89,11 @@ function App() {
   const loadHighscores = (status) => {
     if (status === true) {
       setLoading(status);
-      setHighscores(['YUPP']);
       fetch('/highscore')
         .then((res) => res.json())
         .then((data) => setHighscores(data.highscores))
         .then(setLoading(false));
     }
-    console.log(highscores);
   };
 
   const renderGameBoard = () => {
@@ -111,9 +114,10 @@ function App() {
   };
 
   const renderHighscores = () => {
+    console.log(highscores);
     return (
       <>
-        <h1>HIGHSCORES!</h1>
+        <HighscoresList highscores={highscores} />
       </>
     );
   };
