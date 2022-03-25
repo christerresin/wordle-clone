@@ -75,10 +75,6 @@ function App() {
     );
   }, [result]);
 
-  useEffect(() => {
-    console.log('HIGHSCORE: ' + highscores);
-  }, [highscores]);
-
   const handleInputChange = (input) => {
     let guessedWord = input;
     if (guessedWord.length === wordLength) {
@@ -114,7 +110,6 @@ function App() {
   };
 
   const renderHighscores = () => {
-    console.log(highscores);
     return (
       <>
         <HighscoresList highscores={highscores} />
