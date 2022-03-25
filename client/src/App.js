@@ -93,6 +93,10 @@ function App() {
     }
   };
 
+  const handleUniqueLetters = () => {
+    setUniqueLetters(!uniqueLetters);
+  };
+
   const renderGameBoard = () => {
     return (
       <>
@@ -121,7 +125,7 @@ function App() {
   return (
     <div className='App'>
       <header className='App-header'>
-        <Menu />
+        <Menu handleUniqueLetters={handleUniqueLetters} />
       </header>
       <div className='app__game'>
         {highscores ? renderHighscores() : renderGameBoard()}

@@ -1,0 +1,79 @@
+.app__toggle-container {
+  text-align: center;
+}
+
+.app__toggle-switch {
+  position: relative;
+  width: 75px;
+  display: inline-block;
+  text-align: left;
+  top: 8px;
+}
+
+.app__toggle-checkbox {
+  display: none;
+}
+
+.app__toggle-label {
+  display: block;
+  overflow: hidden;
+  cursor: pointer;
+  border: 0 solid #bbb;
+  border-radius: 20px;
+}
+
+.inner {
+  display: block;
+  width: 200%;
+  margin-left: -100%;
+  transition: margin 0.3s ease-in 0s;
+}
+
+.inner:before,
+.inner:after {
+  float: left;
+  width: 50%;
+  height: 36px;
+  padding: 0;
+  line-height: 36px;
+  color: #fff;
+  font-weight: bold;
+  box-sizing: border-box;
+}
+
+.inner:before {
+  content: 'YES';
+  padding-left: 10px;
+  background-color: #060;
+  color: #fff;
+}
+
+.inner:after {
+  content: 'NO';
+  padding-right: 10px;
+  background-color: #bbb;
+  color: #fff;
+  text-align: right;
+}
+
+.switch {
+  display: block;
+  width: 24px;
+  margin: 5px;
+  background: #fff;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: 40px;
+  border: 0 solid #bbb;
+  border-radius: 20px;
+  transition: all 0.3s ease-in 0s;
+}
+
+.app__toggle-checkbox:checked + .app__toggle-label .inner {
+  margin-left: 0;
+}
+
+.app__toggle-checkbox:checked + .app__toggle-label .switch {
+  right: 0px;
+}
