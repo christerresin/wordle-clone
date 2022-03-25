@@ -94,13 +94,6 @@ app.post('/api/highscore', async (req, res) => {
   games.splice(gameIdx, 1);
 
   res.json(playerObj);
-
-  /*
-    - check post body for obj with playerId and gameId
-    - create obj with highscore data (playerId, gameStart, gameEnd, guessesCount, correctWord,  wordLength, uniqueLetters) and push to highscores Arr
-    - redirect user to /highscores
-    - find index of gameId obj in games Arr and splice
-  */
 });
 
 app.listen(PORT, () => {

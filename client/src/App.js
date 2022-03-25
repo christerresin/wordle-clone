@@ -4,6 +4,7 @@ import WordsList from './components/WordsList';
 import WordInput from './components/WordInput';
 import PlayerInput from './components/PlayerInput';
 import HighscoresList from './components/HighscoresList';
+import Menu from './components/Menu';
 
 import './App.css';
 
@@ -55,7 +56,7 @@ function App() {
 
   useEffect(() => {
     setGameObj({
-      playerId: 'Trinity',
+      playerId: 'Doe',
       gameStart: 0,
       gameEnd: 34,
       guessesCount: guessedWords.length,
@@ -120,8 +121,11 @@ function App() {
   return (
     <div className='App'>
       <header className='App-header'>
-        {highscores ? renderHighscores() : renderGameBoard()}
+        <Menu />
       </header>
+      <div className='app__game'>
+        {highscores ? renderHighscores() : renderGameBoard()}
+      </div>
     </div>
   );
 }
