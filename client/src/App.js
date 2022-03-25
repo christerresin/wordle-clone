@@ -87,7 +87,8 @@ function App() {
       setHighscores(['YUPP']);
       fetch('/highscore')
         .then((res) => res.json())
-        .then((data) => setHighscores(data.highscores));
+        .then((data) => setHighscores(data.highscores))
+        .then(setLoading(false));
     }
     console.log(highscores);
   };

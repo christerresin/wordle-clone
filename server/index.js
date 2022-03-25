@@ -85,10 +85,14 @@ app.post('/api/highscore', async (req, res) => {
     return obj.gameId === gameId;
   });
   const playerObj = { ...req.body, correctWord: game.correctWord };
+  await createNewHighscore(playerObj);
+
+  // remove finished game from games Arr
   const gameIdx = games.findIndex((obj) => {
     return obj.gameId === gameId;
   });
-  await createNewHighscore(playerObj);
+  games.splice(gameIdx, 1);
+
   res.json(playerObj);
 
   /*
