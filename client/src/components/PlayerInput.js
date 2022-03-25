@@ -4,7 +4,10 @@ function PlayerInput(props) {
   const [playerId, setPlayerId] = useState();
 
   function handleOnClick() {
-    const gameObj = { ...props.gameObj, playerId: playerId };
+    const gameObj = {
+      ...props.gameObj,
+      playerId: playerId,
+    };
     fetch(`/api/highscore`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },

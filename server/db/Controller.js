@@ -12,17 +12,17 @@ async function createNewHighscore(playerObj) {
   const playerId = playerObj.playerId;
   const gameStart = playerObj.gameStart;
   const gameEnd = playerObj.gameEnd;
-  const guessesCount = playerObj.guessesCountd;
+  const guessesCount = playerObj.guessesCount;
   const wordLength = playerObj.wordLength;
   const correctWord = playerObj.correctWord;
   const uniqueLetters = playerObj.uniqueLetters;
   const gameId = playerObj.gameId;
   try {
     // Edit below gameDuration calc when correct gameEnd and gameStart values as passed down
-    const gameDuration = gameEnd + 4000 - gameStart;
+    const gameDuration = gameEnd - gameStart;
     const highscore = new Highscore({
       playerId: playerId,
-      gameDuration: gameDuration,
+      gameDuration: gameDuration.toFixed(1),
       guessesCount: guessesCount,
       wordLength: wordLength,
       correctWord: correctWord,
@@ -30,7 +30,7 @@ async function createNewHighscore(playerObj) {
       gameId: gameId,
     });
     await highscore.save();
-    console.log(highscore);
+    console.log('Added new highscore: ' + highscore);
   } catch (e) {
     console.log(e.message);
   }

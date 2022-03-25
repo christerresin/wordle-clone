@@ -61,12 +61,11 @@ app.get('/api/words/:gameid/:guess', (req, res) => {
 app.post('/api/words/:guess-:wordLength-:uniqueLetters', (req, res) => {
   let wordLength = Number(req.params.wordLength);
   let uniqueLetters = req.params.uniqueLetters === 'false' ? false : true;
-  let correctWord = pickWord(words, wordLength, uniqueLetters);
-  let gameId = crypto.randomUUID();
+  const correctWord = pickWord(words, wordLength, uniqueLetters);
+  const gameId = crypto.randomUUID();
   games.push({
     correctWord: correctWord,
     gameId: gameId,
-    gameStart: new Date(),
   });
 
   res.json({

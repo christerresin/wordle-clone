@@ -25,7 +25,7 @@ function App() {
   const [uniqueLetters, setUniqueLetters] = useState(false);
   const [gameId, setGameId] = useState('');
   const [gameObj, setGameObj] = useState();
-  const [isWinner, setIsWinner] = useState(null);
+  const [isWinner, setIsWinner] = useState(false);
   const [loading, setLoading] = useState(true);
   const [highscores, setHighscores] = useState(null);
 
@@ -36,6 +36,7 @@ function App() {
       .then((res) => res.json())
       .then((data) => {
         console.log(data.message);
+        setGameObj({ ...gameObj, gameStart: new Date().getTime() / 1000 });
         setGameId(data.gameId);
         setLoading(false);
       });
@@ -56,9 +57,8 @@ function App() {
 
   useEffect(() => {
     setGameObj({
+      ...gameObj,
       playerId: 'Doe',
-      gameStart: 0,
-      gameEnd: 34,
       guessesCount: guessedWords.length,
       wordLength: wordLength,
       uniqueLetters: uniqueLetters,
@@ -67,13 +67,14 @@ function App() {
   }, [guessedWords]);
 
   useEffect(() => {
-    setIsWinner(
+    if (
       result.filter((obj) => {
         return obj.result === 'correct';
       }).length === wordLength
-        ? true
-        : false
-    );
+    ) {
+      setIsWinner(true);
+      setGameObj({ ...gameObj, gameEnd: new Date().getTime() / 1000 });
+    }
   }, [result]);
 
   const handleInputChange = (input) => {
