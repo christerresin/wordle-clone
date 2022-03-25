@@ -24,7 +24,7 @@ function App() {
   const [gameId, setGameId] = useState('');
   const [gameObj, setGameObj] = useState();
   const [isWinner, setIsWinner] = useState(null);
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(true);
   const [highscores, setHighscores] = useState(null);
 
   useEffect(() => {
@@ -35,18 +35,21 @@ function App() {
       .then((data) => {
         console.log(data.message);
         setGameId(data.gameId);
+        setLoading(false);
       });
   }, [wordLength, uniqueLetters]);
 
   useEffect(() => {
-    fetch(`/api/words/${gameId}/${guess}`)
-      .then((res) => res.json())
-      .then((data) => {
-        setResult(data.message);
-        guessedWords
-          ? setGuessedWords([...guessedWords, data.message])
-          : setGuessedWords([...data.message]);
-      });
+    if (!loading) {
+      fetch(`/api/words/${gameId}/${guess}`)
+        .then((res) => res.json())
+        .then((data) => {
+          setResult(data.message);
+          guessedWords
+            ? setGuessedWords([...guessedWords, data.message])
+            : setGuessedWords([...data.message]);
+        });
+    }
   }, [guess]);
 
   useEffect(() => {
@@ -82,7 +85,11 @@ function App() {
     if (status === true) {
       setLoading(status);
       setHighscores(['YUPP']);
+      fetch('/highscore')
+        .then((res) => res.json())
+        .then((data) => setHighscores(data.highscores));
     }
+    console.log(highscores);
   };
 
   const renderGameBoard = () => {

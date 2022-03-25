@@ -75,11 +75,11 @@ app.post('/api/words/:guess-:wordLength-:uniqueLetters', (req, res) => {
   });
 });
 
-app.get('/highscore', (req, res) => {
-  res.send('HIGHSCORES');
+app.get('/highscore', async (req, res) => {
+  res.json({ highscores: await getAllHighscores() });
 });
 
-app.post('/api/highscore', (req, res) => {
+app.post('/api/highscore', async (req, res) => {
   const gameId = req.body.gameId;
   const game = games.find((obj) => {
     return obj.gameId === gameId;
@@ -88,7 +88,8 @@ app.post('/api/highscore', (req, res) => {
   const gameIdx = games.findIndex((obj) => {
     return obj.gameId === gameId;
   });
-  createNewHighscore(playerObj);
+  await createNewHighscore(playerObj);
+  res.json(playerObj);
 
   /*
     - check post body for obj with playerId and gameId
