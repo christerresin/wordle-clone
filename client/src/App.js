@@ -15,6 +15,11 @@ import './App.css';
   - indicators for status (correct, incorrect, misplaced) colored letters?
   - check winner, useState check array for all correct
   - winner? name input and POST
+
+  - create configure game page
+  - dropdown for word length settings
+  - selector for unique letters
+  - PLAY button
 */
 
 function App() {
@@ -96,6 +101,28 @@ function App() {
 
   const handleUniqueLetters = () => {
     setUniqueLetters(!uniqueLetters);
+  };
+
+  const renderGameStart = () => {
+    const menuItem = ['Game', 'Highscore', 'Info'];
+    return (
+      <>
+        <nav>
+          <h1>WÖÖÖRDL</h1>
+          <ul>
+            {menuItem.map((item) => {
+              return <li key={item}>{item}</li>;
+            })}
+          </ul>
+        </nav>
+        <div>
+          <h3>Configure game</h3>
+          <div>How many letters input</div>
+          <div>uniqueLetters toggle</div>
+          <button>PLAY!</button>
+        </div>
+      </>
+    );
   };
 
   const renderGameBoard = () => {
