@@ -4,6 +4,8 @@ import WordsList from './components/WordsList';
 import WordInput from './components/WordInput';
 import PlayerInput from './components/PlayerInput';
 import HighscoresList from './components/HighscoresList';
+import Dropdown from './components/Dropdown';
+import ToggleSwitch from './components/ToggleSwitch';
 import Menu from './components/Menu';
 
 import './App.css';
@@ -103,6 +105,11 @@ function App() {
     setUniqueLetters(!uniqueLetters);
   };
 
+  const handleWordLength = (value) => {
+    console.log(value);
+    setWordLength(value);
+  };
+
   const renderGameStart = () => {
     const menuItem = ['Game', 'Highscore', 'Info'];
     return (
@@ -117,8 +124,14 @@ function App() {
         </nav>
         <div>
           <h3>Configure game</h3>
-          <div>How many letters input</div>
-          <div>uniqueLetters toggle</div>
+          <Dropdown
+            wordLength={wordLength}
+            handleWordLength={handleWordLength}
+          />
+          <ToggleSwitch
+            label='Only unique letters?'
+            handleUniqueLetters={handleUniqueLetters}
+          />
           <button>PLAY!</button>
         </div>
       </>
@@ -150,16 +163,18 @@ function App() {
     );
   };
 
-  return (
-    <div className='App'>
-      <header className='App-header'>
-        <Menu handleUniqueLetters={handleUniqueLetters} />
-      </header>
-      <div className='app__game'>
-        {highscores ? renderHighscores() : renderGameBoard()}
-      </div>
-    </div>
-  );
+  return <>{renderGameStart()}</>;
+
+  // return (
+  //   <div className='App'>
+  //     <header className='App-header'>
+  //       <Menu handleUniqueLetters={handleUniqueLetters} />
+  //     </header>
+  //     <div className='app__game'>
+  //       {highscores ? renderHighscores() : renderGameBoard()}
+  //     </div>
+  //   </div>
+  // );
 }
 
 export default App;

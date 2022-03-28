@@ -1,0 +1,9 @@
+.app__dropdown-container {
+  display: flex;
+  flex-direction: column;
+}
+
+label,
+select {
+  display: block;
+}
