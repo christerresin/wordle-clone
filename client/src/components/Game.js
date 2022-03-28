@@ -22,6 +22,10 @@ import './Game.css';
   - dropdown for word length settings
   - selector for unique letters
   - PLAY button
+
+  - result/game finished page
+  - reset states for game
+  -
 */
 
 function Game() {
@@ -36,18 +40,11 @@ function Game() {
   const [loading, setLoading] = useState(true);
   const [highscores, setHighscores] = useState(null);
   const [gameState, setgameState] = useState('start');
-  const [menuItem, setMenuItem] = useState(['Game', 'Highscore', 'Info']);
+  const menuItem = ['Game', 'Highscore', 'Info'];
 
   useEffect(() => {
     if (!loading) {
-      fetch(`/api/words/${gameId}/${guess}`)
-        .then((res) => res.json())
-        .then((data) => {
-          setResult(data.message);
-          guessedWords
-            ? setGuessedWords([...guessedWords, data.message])
-            : setGuessedWords([...data.message]);
-        });
+      handleGuess();
     }
   }, [guess]);
 
@@ -72,6 +69,16 @@ function Game() {
       setGameObj({ ...gameObj, gameEnd: new Date().getTime() / 1000 });
     }
   }, [result]);
+
+  const handleGuess = async () => {
+    const res = await fetch(`/api/words/${gameId}/${guess}`);
+
+    const data = await res.json();
+    setResult(data.message);
+    guessedWords
+      ? setGuessedWords([...guessedWords, data.message])
+      : setGuessedWords([...data.message]);
+  };
 
   const startNewGame = async () => {
     const res = await fetch(
