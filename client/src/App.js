@@ -35,19 +35,20 @@ function App() {
   const [isWinner, setIsWinner] = useState(false);
   const [loading, setLoading] = useState(true);
   const [highscores, setHighscores] = useState(null);
+  const [gameState, setgameState] = useState('start');
 
-  useEffect(() => {
-    fetch(`/api/words/${guess}-${wordLength}-${uniqueLetters}`, {
-      method: 'POST',
-    })
-      .then((res) => res.json())
-      .then((data) => {
-        console.log(data.message);
-        setGameObj({ ...gameObj, gameStart: new Date().getTime() / 1000 });
-        setGameId(data.gameId);
-        setLoading(false);
-      });
-  }, [wordLength, uniqueLetters]);
+  // useEffect(() => {
+  //   fetch(`/api/words/${guess}-${wordLength}-${uniqueLetters}`, {
+  //     method: 'POST',
+  //   })
+  //     .then((res) => res.json())
+  //     .then((data) => {
+  //       console.log(data.message);
+  //       setGameObj({ ...gameObj, gameStart: new Date().getTime() / 1000 });
+  //       setGameId(data.gameId);
+  //       setLoading(false);
+  //     });
+  // }, [wordLength, uniqueLetters]);
 
   useEffect(() => {
     if (!loading) {
@@ -84,6 +85,21 @@ function App() {
     }
   }, [result]);
 
+  const startNewGame = async () => {
+    const res = await fetch(
+      `/api/words/${guess}-${wordLength}-${uniqueLetters}`,
+      {
+        method: 'POST',
+      }
+    );
+    const data = await res.json();
+
+    console.log(data.message);
+    setGameObj({ ...gameObj, gameStart: new Date().getTime() / 1000 });
+    setGameId(data.gameId);
+    setLoading(false);
+  };
+
   const handleInputChange = (input) => {
     let guessedWord = input;
     if (guessedWord.length === wordLength) {
@@ -91,13 +107,13 @@ function App() {
     }
   };
 
-  const loadHighscores = (status) => {
+  const loadHighscores = async (status) => {
     if (status === true) {
       setLoading(status);
-      fetch('/highscore')
-        .then((res) => res.json())
-        .then((data) => setHighscores(data.highscores))
-        .then(setLoading(false));
+      const res = await fetch('/highscore');
+      const data = res.json();
+      setHighscores(data.highscores);
+      setLoading(false);
     }
   };
 
@@ -106,8 +122,13 @@ function App() {
   };
 
   const handleWordLength = (value) => {
-    console.log(value);
     setWordLength(value);
+  };
+
+  const handleOnPlayClick = async () => {
+    setLoading(true);
+    setgameState('playing');
+    await startNewGame();
   };
 
   const renderGameStart = () => {
@@ -132,7 +153,7 @@ function App() {
             label='Only unique letters?'
             handleUniqueLetters={handleUniqueLetters}
           />
-          <button>PLAY!</button>
+          <button onClick={handleOnPlayClick}>PLAY!</button>
         </div>
       </>
     );
@@ -163,7 +184,7 @@ function App() {
     );
   };
 
-  return <>{renderGameStart()}</>;
+  return <>{gameState === 'start' ? renderGameStart() : null}</>;
 
   // return (
   //   <div className='App'>
