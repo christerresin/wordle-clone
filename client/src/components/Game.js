@@ -36,19 +36,7 @@ function Game() {
   const [loading, setLoading] = useState(true);
   const [highscores, setHighscores] = useState(null);
   const [gameState, setgameState] = useState('start');
-
-  // useEffect(() => {
-  //   fetch(`/api/words/${guess}-${wordLength}-${uniqueLetters}`, {
-  //     method: 'POST',
-  //   })
-  //     .then((res) => res.json())
-  //     .then((data) => {
-  //       console.log(data.message);
-  //       setGameObj({ ...gameObj, gameStart: new Date().getTime() / 1000 });
-  //       setGameId(data.gameId);
-  //       setLoading(false);
-  //     });
-  // }, [wordLength, uniqueLetters]);
+  const [menuItem, setMenuItem] = useState(['Game', 'Highscore', 'Info']);
 
   useEffect(() => {
     if (!loading) {
@@ -85,16 +73,6 @@ function Game() {
     }
   }, [result]);
 
-  useEffect(() => {
-    if (gameState === 'start') {
-      renderGameStart();
-    } else if (gameState === 'playing') {
-      renderGameBoard();
-    } else if (gameState === 'highscore') {
-      renderHighscores();
-    }
-  }, [gameState]);
-
   const startNewGame = async () => {
     const res = await fetch(
       `/api/words/${guess}-${wordLength}-${uniqueLetters}`,
@@ -122,9 +100,9 @@ function Game() {
     if (status === true) {
       setLoading(status);
       const res = await fetch('/highscore');
-      const data = res.json();
+      const data = await res.json();
       setHighscores(data.highscores);
-      setLoading(false);
+      setgameState('highscore');
     }
   };
 
@@ -141,37 +119,9 @@ function Game() {
     await startNewGame();
   };
 
-  const renderGameStart = () => {
-    const menuItem = ['Game', 'Highscore', 'Info'];
+  if (gameState === 'playing') {
     return (
-      <>
-        <nav>
-          <h1>WÖÖÖRDL</h1>
-          <ul>
-            {menuItem.map((item) => {
-              return <li key={item}>{item}</li>;
-            })}
-          </ul>
-        </nav>
-        <div>
-          <h3>Configure game</h3>
-          <Dropdown
-            wordLength={wordLength}
-            handleWordLength={handleWordLength}
-          />
-          <ToggleSwitch
-            label='Only unique letters?'
-            handleUniqueLetters={handleUniqueLetters}
-          />
-          <button onClick={handleOnPlayClick}>PLAY!</button>
-        </div>
-      </>
-    );
-  };
-
-  const renderGameBoard = () => {
-    return (
-      <>
+      <div className='Game'>
         <WordsList guessedWords={guessedWords} />
         {isWinner ? (
           <PlayerInput gameObj={gameObj} loadHighscores={loadHighscores} />
@@ -182,30 +132,37 @@ function Game() {
             result={result}
           />
         )}
-      </>
+      </div>
     );
-  };
-
-  const renderHighscores = () => {
+  } else if (gameState === 'highscore') {
     return (
-      <>
+      <div className='Game'>
         <HighscoresList highscores={highscores} />
-      </>
+      </div>
     );
-  };
+  }
 
-  return <>{gameState === 'start' ? renderGameStart() : null}</>;
-
-  // return (
-  //   <div className='Game'>
-  //     <header className='Game-header'>
-  //       <Menu handleUniqueLetters={handleUniqueLetters} />
-  //     </header>
-  //     <div className='Game__game'>
-  //       {highscores ? renderHighscores() : renderGameBoard()}
-  //     </div>
-  //   </div>
-  // );
+  return (
+    <div className='Game'>
+      <nav>
+        <h1>WÖÖÖRDL</h1>
+        <ul>
+          {menuItem.map((item) => {
+            return <li key={item}>{item}</li>;
+          })}
+        </ul>
+      </nav>
+      <div>
+        <h3>Configure game</h3>
+        <Dropdown wordLength={wordLength} handleWordLength={handleWordLength} />
+        <ToggleSwitch
+          label='Only unique letters?'
+          handleUniqueLetters={handleUniqueLetters}
+        />
+        <button onClick={handleOnPlayClick}>PLAY!</button>
+      </div>
+    </div>
+  );
 }
 
 export default Game;

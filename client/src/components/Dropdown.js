@@ -39,7 +39,7 @@ function Dropdown(props) {
             {menuItems.map((item) => {
               return (
                 <option key={item.value} value={item.value}>
-                  {item.label} HERE
+                  {item.label}
                 </option>
               );
             })}
