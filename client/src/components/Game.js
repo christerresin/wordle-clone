@@ -40,7 +40,20 @@ function Game() {
   const [loading, setLoading] = useState(true);
   const [highscores, setHighscores] = useState(null);
   const [gameState, setgameState] = useState('start');
-  const menuItem = ['Game', 'Highscore', 'Info'];
+  const [menuItem, setMenuItem] = useState([
+    {
+      label: 'Game',
+      active: true,
+    },
+    {
+      label: 'Highscore',
+      active: false,
+    },
+    {
+      label: 'Info',
+      active: false,
+    },
+  ]);
 
   useEffect(() => {
     if (!loading) {
@@ -153,9 +166,16 @@ function Game() {
     <div className='Game'>
       <nav>
         <h1>WÖÖÖRDL</h1>
-        <ul>
+        <ul className='app__menu'>
           {menuItem.map((item) => {
-            return <li key={item}>{item}</li>;
+            return (
+              <li
+                className={`app__menu-item ${item.active ? 'selected' : ''}`}
+                key={item.label}
+              >
+                {item.label}
+              </li>
+            );
           })}
         </ul>
       </nav>

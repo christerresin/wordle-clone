@@ -15,15 +15,3 @@ function WordsList(props) {
 }
 
 export default WordsList;
-
-/*
-
-      {props.result.map((obj, index) => {
-        return (
-          <li className={obj.result} key={obj.letter + index}>
-            {obj.letter.toUpperCase()}
-          </li>
-        );
-      })}
-
-*/
