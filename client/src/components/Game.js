@@ -188,7 +188,9 @@ function Game() {
           label='Only unique letters?'
           handleUniqueLetters={handleUniqueLetters}
         />
-        <button onClick={handleOnPlayClick}>PLAY!</button>
+        <button className='app__game-button' onClick={handleOnPlayClick}>
+          PLAY!
+        </button>
       </div>
     </div>
   );

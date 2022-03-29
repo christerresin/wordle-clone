@@ -1,9 +1,12 @@
 .app__dropdown-container {
   display: flex;
   flex-direction: column;
+  margin-top: 3rem;
 }
 
 label,
 select {
   display: block;
+  width: 100%;
+  border-radius: 5px;
 }
