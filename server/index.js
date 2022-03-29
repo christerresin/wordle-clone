@@ -74,7 +74,11 @@ app.post('/api/words/:guess-:wordLength-:uniqueLetters', (req, res) => {
   });
 });
 
-app.get('/highscore', async (req, res) => {
+app.get('/highscore', (req, res) => {
+  res.send('HIGHSCORES');
+});
+
+app.get('/api/highscore', async (req, res) => {
   res.json({ highscores: await getAllHighscores() });
 });
 

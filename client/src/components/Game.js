@@ -6,7 +6,6 @@ import PlayerInput from './PlayerInput';
 import HighscoresList from './HighscoresList';
 import Dropdown from './Dropdown';
 import ToggleSwitch from './ToggleSwitch';
-import Menu from './Menu';
 
 import './Game.css';
 
@@ -44,14 +43,17 @@ function Game() {
     {
       label: 'Game',
       active: true,
+      link: '/',
     },
     {
       label: 'Highscore',
       active: false,
+      link: '/highscore',
     },
     {
       label: 'Info',
       active: false,
+      link: '/info',
     },
   ]);
 
@@ -119,7 +121,7 @@ function Game() {
   const loadHighscores = async (status) => {
     if (status === true) {
       setLoading(status);
-      const res = await fetch('/highscore');
+      const res = await fetch('/api/highscore');
       const data = await res.json();
       setHighscores(data.highscores);
       setgameState('highscore');
@@ -173,7 +175,7 @@ function Game() {
                 className={`app__menu-item ${item.active ? 'selected' : ''}`}
                 key={item.label}
               >
-                {item.label}
+                <a href={item.link}>{item.label}</a>
               </li>
             );
           })}
