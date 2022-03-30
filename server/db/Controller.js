@@ -22,7 +22,7 @@ async function createNewHighscore(playerObj) {
     const gameDuration = gameEnd - gameStart;
     const highscore = new Highscore({
       playerId: playerId,
-      gameDuration: gameDuration.toFixed(1),
+      gameDuration: gameDuration.toFixed(0),
       guessesCount: guessesCount,
       wordLength: wordLength,
       correctWord: correctWord,
