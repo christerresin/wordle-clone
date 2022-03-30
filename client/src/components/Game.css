@@ -1,0 +1,46 @@
+.Game {
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  color: white;
+  text-align: center;
+}
+
+.app__menu {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  list-style-type: none;
+  padding: 0;
+}
+
+.app__menu-item {
+  cursor: pointer;
+  margin: 0 2rem;
+}
+
+.selected {
+  color: purple;
+  border-bottom: 3px solid purple;
+}
+
+h3 {
+  margin-top: 3rem;
+}
+
+.app__game-button {
+  background-color: lightcoral;
+  border: none;
+  border-radius: 5px;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 1rem;
+  font-weight: 600;
+  margin-top: 5rem;
+}
