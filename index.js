@@ -4,7 +4,7 @@ import { words } from './server/words.js';
 
 // console.log(feedback('propp', 'spira'));
 
-// console.log(pickWord(words, 2, false));
+// console.log(pickWord(['screen'], 6, false));
 
 // console.log(feedback('cykla', 5));
 

@@ -35,12 +35,14 @@ function pickWord(wordArr, wordLength = 5, norepeat = false) {
           .join('')
       );
     });
+    console.log(filteredWordsArr);
     // Compare chars for equal value and filter
     filteredWordsArr.map((word, index) => {
       word.split('').map((letter, i) => {
         const match = letter === word[i + 1] ? true : false;
-        match ? filteredWordsArr.splice(index, 1) : '';
-        match ? wordArr.splice(index, 1) : '';
+        console.log(match);
+        match === true ? filteredWordsArr.splice(index, 1) : '';
+        match === true ? wordArr.splice(index, 1) : '';
       });
     });
   }
