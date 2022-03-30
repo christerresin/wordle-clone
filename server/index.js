@@ -86,7 +86,6 @@ app.post('/api/words/:guess-:wordLength-:uniqueLetters', (req, res) => {
 
 app.get('/highscore', async (req, res) => {
   const highscores = await getAllHighscores();
-  console.log(highscores);
   res.render('pages/index', { highscores: highscores });
 });
 
@@ -109,6 +108,10 @@ app.post('/api/highscore', async (req, res) => {
   games.splice(gameIdx, 1);
 
   res.json(playerObj);
+});
+
+app.get('/info', (req, res) => {
+  res.sendFile(path.join(__dirname, 'public', 'info.html'));
 });
 
 app.listen(PORT, () => {
