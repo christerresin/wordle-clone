@@ -16,7 +16,14 @@ function WordInput(props) {
     }
   };
 
-  return <input type='text' value={guess} onChange={handleOnChange} />;
+  return (
+    <input
+      className='app__wordInput'
+      type='text'
+      value={guess}
+      onChange={handleOnChange}
+    />
+  );
 }
 
 export default WordInput;

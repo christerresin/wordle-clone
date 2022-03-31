@@ -1,3 +1,6 @@
-input {
+.app__wordInput {
   margin-top: 1rem;
+  width: 20vw;
+  height: 2rem;
+  font-size: 2rem;
 }

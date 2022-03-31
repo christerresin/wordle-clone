@@ -1,5 +1,7 @@
 import { useState } from 'react';
 
+import './PlayerInput.css';
+
 function PlayerInput(props) {
   const [playerId, setPlayerId] = useState();
 
@@ -24,8 +26,11 @@ function PlayerInput(props) {
 
   return (
     <>
+      <h3>What is your alteregos name?!</h3>
       <input type='text' onChange={handleOnChange} />
-      <button onClick={handleOnClick}>REGISTER</button>
+      <button className='app__playerinput-link' onClick={handleOnClick}>
+        REGISTER
+      </button>
     </>
   );
 }

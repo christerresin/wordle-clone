@@ -1,0 +1,19 @@
+input {
+  width: 20vw;
+  height: 2rem;
+  font-size: 2rem;
+}
+
+.app__playerinput-link {
+  background-color: #97d8c4;
+  border: none;
+  border-radius: 5px;
+  color: #eff2f1;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 1rem;
+  font-weight: 600;
+  margin-top: 1rem;
+}
