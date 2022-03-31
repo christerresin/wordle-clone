@@ -4,13 +4,29 @@ import './WordsList.css';
 
 function WordsList(props) {
   return (
-    <ul className='app__wordsList-container'>
-      {props.guessedWords
-        ? props.guessedWords.map((word, index) => {
-            return <ListItem key={index} word={word} />;
-          })
-        : null}
-    </ul>
+    <>
+      <div className='app__wordList'>
+        <ul className='app__wordsList-container'>
+          {props.guessedWords
+            ? props.guessedWords.map((word, index) => {
+                return <ListItem key={index} word={word} />;
+              })
+            : null}
+        </ul>
+        <ul className='app__wordsList-container'>
+          <ul className='app__wordsList-item'>
+            {[...Array(props.wordLength)].map((word, index) => {
+              return (
+                <li
+                  className='app__wordsList-letterBox incorrect'
+                  key={index}
+                ></li>
+              );
+            })}
+          </ul>
+        </ul>
+      </div>
+    </>
   );
 }
 

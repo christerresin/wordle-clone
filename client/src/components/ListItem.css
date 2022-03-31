@@ -1,7 +1,7 @@
 .app__wordsList-item {
   display: flex;
   flex-direction: row;
-  background-color: aliceblue;
+  background-color: #eff2f1;
   list-style-type: none;
   padding: 0;
 }
@@ -24,9 +24,9 @@
 }
 
 .correct {
-  background-color: rgb(83, 199, 83);
+  background-color: rgb(151, 216, 196);
 }
 
 .misplaced {
-  background-color: rgb(235, 235, 118);
+  background-color: rgb(244, 185, 66);
 }

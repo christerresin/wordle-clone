@@ -25,24 +25,6 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(express.static('public'));
 
-/*
-  - Get guess from frontend
-  - pick random correctWord and keep it hidden (not using global var on server)
-  - call feedback
-  - if all correct, obj with timeStamps et.c
-  - post winner route
-*/
-
-// await createNewHighscore(
-//   'Lisa',
-//   new Date().getTime() / 1000,
-//   new Date().getTime() / 1000,
-//   2,
-//   5,
-//   'smell',
-//   false
-// );
-
 // console.log(await getAllHighscores());
 // deleteAllHighscores();
 // getHighscores('Lisa');

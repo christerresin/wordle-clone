@@ -24,7 +24,10 @@ import './Game.css';
 
   - result/game finished page
   - reset states for game
-  -
+
+  - design game (wordList) with boxes
+  - design endScreen, display playerName, guesses, correct word and gameduration
+  - add button for play again and highscores
 */
 
 function Game() {
@@ -144,7 +147,7 @@ function Game() {
   if (gameState === 'playing') {
     return (
       <div className='Game'>
-        <WordsList guessedWords={guessedWords} />
+        <WordsList guessedWords={guessedWords} wordLength={wordLength} />
         {isWinner ? (
           <PlayerInput gameObj={gameObj} loadHighscores={loadHighscores} />
         ) : (

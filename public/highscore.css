@@ -1,11 +1,11 @@
 .Game {
-  background-color: #282c34;
+  background-color: #4059ad;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: flex-start;
-  color: white;
+  color: #eff2f1;
   text-align: center;
 }
 
@@ -22,9 +22,17 @@
   margin: 0 2rem;
 }
 
+a:link {
+  text-decoration: none;
+}
+
+a:visited {
+  color: #eff2f1;
+}
+
 .selected {
-  color: purple;
-  border-bottom: 3px solid purple;
+  color: #eff2f1;
+  border-bottom: 3px solid #eff2f1;
 }
 
 h3 {
@@ -32,7 +40,7 @@ h3 {
 }
 
 .app__game-button {
-  background-color: lightcoral;
+  background-color: #97d8c4;
   border: none;
   border-radius: 5px;
   color: white;

@@ -1,13 +1,9 @@
 import { useEffect, useState } from 'react';
 
+import './WordInput.css';
+
 function WordInput(props) {
   const [guess, setGuess] = useState('');
-
-  // useEffect(() => {
-  //   console.log(
-  //     Math.abs((new Date().getTime() - gameDuration.start.getTime()) / 1000)
-  //   );
-  // }, [gameDuration]);
 
   const handleOnChange = (event) => {
     let guessedWord = event.target.value;
