@@ -17,7 +17,9 @@ function PlayerInput(props) {
   }
 
   function handleOnChange(e) {
-    setPlayerId(e.target.value);
+    const newPlayerId = e.target.value;
+    setPlayerId(newPlayerId);
+    props.handleNewPlayerId(newPlayerId);
   }
 
   return (

@@ -145,12 +145,20 @@ function Game() {
     await startNewGame();
   };
 
+  const handleNewPlayerId = (playerId) => {
+    setGameObj({ ...gameObj, playerId: playerId });
+  };
+
   if (gameState === 'playing') {
     return (
       <div className='Game'>
         <WordsList guessedWords={guessedWords} wordLength={wordLength} />
         {isWinner ? (
-          <PlayerInput gameObj={gameObj} loadHighscores={loadHighscores} />
+          <PlayerInput
+            gameObj={gameObj}
+            loadHighscores={loadHighscores}
+            handleNewPlayerId={handleNewPlayerId}
+          />
         ) : (
           <WordInput
             handleInputChange={handleInputChange}
