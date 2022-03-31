@@ -71,7 +71,7 @@ function Game() {
   useEffect(() => {
     setGameObj({
       ...gameObj,
-      playerId: 'Doe',
+      playerId: 'UnknownPlayer',
       guessesCount: guessedWords.length,
       wordLength: wordLength,
       uniqueLetters: uniqueLetters,
@@ -155,6 +155,9 @@ function Game() {
   };
 
   if (gameState === 'playing') {
+    if (loading) {
+      return <h2>LOADING...</h2>;
+    }
     return (
       <div className='Game'>
         <WordsList
