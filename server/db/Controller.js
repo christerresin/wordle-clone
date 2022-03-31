@@ -39,8 +39,9 @@ async function createNewHighscore(playerObj) {
 async function getAllHighscores() {
   try {
     const highscoresArr = await Highscore.find();
+
     highscoresArr.sort((a, b) => {
-      return a.gameDuration - b.gameDuration;
+      return a.gameDuration.toFixed(0) - b.gameDuration.toFixed(0);
     });
     return highscoresArr;
   } catch (e) {
