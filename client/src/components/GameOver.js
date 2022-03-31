@@ -5,11 +5,11 @@ function GameOver({ gameObj }) {
   return (
     <>
       <div className='app__gameover'>
-        <h3>Winner!</h3>
-        <p>{gameObj.playerId}</p>
-        <p>
+        <h2>Winner!</h2>
+        <div>{gameObj.playerId.toUpperCase()}</div>
+        <div>
           Your time was: {(gameObj.gameEnd - gameObj.gameStart).toFixed(0)}s
-        </p>
+        </div>
       </div>
       <div className='app__gameover-buttons'>
         <a href='/' className='app__gameover-link'>
