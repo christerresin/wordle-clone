@@ -1,0 +1,18 @@
+.app__gameover-buttons {
+  display: flex;
+  flex-direction: row;
+}
+
+.app__gameover-link {
+  display: block;
+  width: 115px;
+  height: 25px;
+  background: #97d8c4;
+  padding: 10px;
+  text-align: center;
+  border-radius: 5px;
+  color: #eff2f1;
+  font-weight: bold;
+  line-height: 25px;
+  margin: 1rem 0.5rem;
+}

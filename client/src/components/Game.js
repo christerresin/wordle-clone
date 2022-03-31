@@ -6,6 +6,7 @@ import PlayerInput from './PlayerInput';
 import HighscoresList from './HighscoresList';
 import Dropdown from './Dropdown';
 import ToggleSwitch from './ToggleSwitch';
+import GameOver from './GameOver';
 
 import './Game.css';
 
@@ -127,7 +128,7 @@ function Game() {
       const res = await fetch('/api/highscore');
       const data = await res.json();
       setHighscores(data.highscores);
-      setgameState('highscore');
+      setgameState('gameover');
     }
   };
 
@@ -163,6 +164,12 @@ function Game() {
     return (
       <div className='Game'>
         <HighscoresList highscores={highscores} />
+      </div>
+    );
+  } else if (gameState === 'gameover') {
+    return (
+      <div className='Game'>
+        <GameOver gameObj={gameObj} />
       </div>
     );
   }
