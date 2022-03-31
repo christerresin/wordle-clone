@@ -8,9 +8,11 @@ function WordInput(props) {
   const handleOnChange = (event) => {
     let guessedWord = event.target.value;
     setGuess(guessedWord);
+    props.handleCurrentGuess(guessedWord.split(''));
     if (guessedWord.length === props.wordLength) {
       props.handleInputChange(guessedWord);
       setGuess('');
+      props.handleCurrentGuess([]);
     }
   };
 

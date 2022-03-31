@@ -17,10 +17,11 @@ function WordsList(props) {
           <ul className='app__wordsList-item'>
             {[...Array(props.wordLength)].map((word, index) => {
               return (
-                <li
-                  className='app__wordsList-letterBox incorrect'
-                  key={index}
-                ></li>
+                <li className='app__wordsList-letterBox incorrect' key={index}>
+                  {props.currentGuess[index]
+                    ? props.currentGuess[index].toUpperCase()
+                    : null}
+                </li>
               );
             })}
           </ul>

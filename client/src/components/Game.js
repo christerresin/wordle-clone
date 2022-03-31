@@ -35,6 +35,7 @@ function Game() {
   const [result, setResult] = useState([]);
   const [guess, setGuess] = useState(null);
   const [guessedWords, setGuessedWords] = useState([]);
+  const [currentGuess, setCurrentGuess] = useState([]);
   const [wordLength, setWordLength] = useState(5);
   const [uniqueLetters, setUniqueLetters] = useState(false);
   const [gameId, setGameId] = useState('');
@@ -149,10 +150,18 @@ function Game() {
     setGameObj({ ...gameObj, playerId: playerId });
   };
 
+  const handleCurrentGuess = (currentGuessArr) => {
+    setCurrentGuess(currentGuessArr);
+  };
+
   if (gameState === 'playing') {
     return (
       <div className='Game'>
-        <WordsList guessedWords={guessedWords} wordLength={wordLength} />
+        <WordsList
+          guessedWords={guessedWords}
+          wordLength={wordLength}
+          currentGuess={currentGuess}
+        />
         {isWinner ? (
           <PlayerInput
             gameObj={gameObj}
@@ -164,6 +173,7 @@ function Game() {
             handleInputChange={handleInputChange}
             wordLength={wordLength}
             result={result}
+            handleCurrentGuess={handleCurrentGuess}
           />
         )}
       </div>
