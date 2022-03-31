@@ -161,6 +161,7 @@ function Game() {
           guessedWords={guessedWords}
           wordLength={wordLength}
           currentGuess={currentGuess}
+          isWinner={isWinner}
         />
         {isWinner ? (
           <PlayerInput

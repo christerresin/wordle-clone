@@ -13,19 +13,24 @@ function WordsList(props) {
               })
             : null}
         </ul>
-        <ul className='app__wordsList-container'>
-          <ul className='app__wordsList-item'>
-            {[...Array(props.wordLength)].map((word, index) => {
-              return (
-                <li className='app__wordsList-letterBox incorrect' key={index}>
-                  {props.currentGuess[index]
-                    ? props.currentGuess[index].toUpperCase()
-                    : null}
-                </li>
-              );
-            })}
+        {props.isWinner === true ? null : (
+          <ul className='app__wordsList-container'>
+            <ul className='app__wordsList-item'>
+              {[...Array(props.wordLength)].map((word, index) => {
+                return (
+                  <li
+                    className='app__wordsList-letterBox incorrect'
+                    key={index}
+                  >
+                    {props.currentGuess[index]
+                      ? props.currentGuess[index].toUpperCase()
+                      : null}
+                  </li>
+                );
+              })}
+            </ul>
           </ul>
-        </ul>
+        )}
       </div>
     </>
   );
