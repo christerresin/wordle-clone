@@ -7,29 +7,9 @@ import HighscoresList from './HighscoresList';
 import Dropdown from './Dropdown';
 import ToggleSwitch from './ToggleSwitch';
 import GameOver from './GameOver';
+import Loading from './Loading';
 
 import './Game.css';
-
-/*
-  - guess input
-  - letter holders
-  - loop over feedback obj and set classNames based on result
-  - indicators for status (correct, incorrect, misplaced) colored letters?
-  - check winner, useState check array for all correct
-  - winner? name input and POST
-
-  - create configure game page
-  - dropdown for word length settings
-  - selector for unique letters
-  - PLAY button
-
-  - result/game finished page
-  - reset states for game
-
-  - design game (wordList) with boxes
-  - design endScreen, display playerName, guesses, correct word and gameduration
-  - add button for play again and highscores
-*/
 
 function Game() {
   const [result, setResult] = useState([]);
@@ -155,7 +135,7 @@ function Game() {
 
   if (gameState === 'playing') {
     if (loading) {
-      return <h2>LOADING...</h2>;
+      return <Loading />;
     }
     return (
       <div className='Game'>

@@ -1,0 +1,25 @@
+body {
+  background-color: #4059ad;
+}
+
+.loader {
+  background-color: #4059ad;
+  margin: auto;
+  margin-top: 3rem;
+  border: 20px solid #eff2f1;
+  border-radius: 50%;
+  border-top: 20px solid #97d8c4;
+  width: 200px;
+  height: 200px;
+  animation: spinner 4s linear infinite;
+}
+
+@keyframes spinner {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
+}
