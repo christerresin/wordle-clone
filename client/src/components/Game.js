@@ -109,7 +109,6 @@ function Game() {
     );
     const data = await res.json();
 
-    console.log(data.message);
     setGameObj({ ...gameObj, gameStart: new Date().getTime() / 1000 });
     setGameId(data.gameId);
     setLoading(false);

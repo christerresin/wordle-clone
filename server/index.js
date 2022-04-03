@@ -38,9 +38,9 @@ app.get('/', (req, res) => {
   res.sendFile(path.join(__dirname, 'public', 'index.html'));
 });
 
-app.get('/api', (req, res) => {
-  res.json({ message: feedback(guess, correctWord) });
-});
+// app.get('/api', (req, res) => {
+//   res.json({ message: feedback(guess, correctWord) });
+// });
 
 app.get('/api/words/:gameid/:guess', (req, res) => {
   const correctGameObj = games.find((obj) => {
@@ -62,7 +62,6 @@ app.post('/api/words/:guess-:wordLength-:uniqueLetters', (req, res) => {
 
   res.json({
     gameId: gameId,
-    message: correctWord,
   });
 });
 
