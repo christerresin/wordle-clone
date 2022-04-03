@@ -6,7 +6,6 @@
   align-items: center;
   justify-content: flex-start;
   color: #eff2f1;
-  text-align: center;
 }
 
 .app__menu {
@@ -22,18 +21,17 @@
   margin: 0 2rem;
 }
 
-.selected {
-  color: #eff2f1;
-  border-bottom: 3px solid #eff2f1;
-}
-
 a:link {
   text-decoration: none;
-  color: #eff2f1;
 }
 
 a:visited {
   color: #eff2f1;
+}
+
+.selected {
+  color: #eff2f1;
+  border-bottom: 3px solid #eff2f1;
 }
 
 h3 {
@@ -44,7 +42,7 @@ h3 {
   background-color: #97d8c4;
   border: none;
   border-radius: 5px;
-  color: #eff2f1;
+  color: white;
   padding: 15px 32px;
   text-align: center;
   text-decoration: none;
@@ -52,4 +50,12 @@ h3 {
   font-size: 1rem;
   font-weight: 600;
   margin-top: 5rem;
+}
+
+.info-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  margin: 1rem 1rem;
+  text-align: left;
 }

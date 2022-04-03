@@ -1,4 +1,4 @@
-import pickWord from './pickWord.js';
+import pickWord from './server/pickWord.js';
 
 /*
   TEST
