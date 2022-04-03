@@ -18,7 +18,6 @@ function Game() {
   const [currentGuess, setCurrentGuess] = useState([]);
   const [wordLength, setWordLength] = useState(5);
   const [uniqueLetters, setUniqueLetters] = useState(false);
-  const [gameId, setGameId] = useState('');
   const [gameObj, setGameObj] = useState();
   const [isWinner, setIsWinner] = useState(false);
   const [loading, setLoading] = useState(true);
@@ -92,6 +91,7 @@ function Game() {
       ...gameObj,
       gameId: data.gameId,
       gameStart: new Date().getTime() / 1000,
+      guessedWords: [],
     });
     setLoading(false);
   };
@@ -100,6 +100,10 @@ function Game() {
     let guessedWord = input;
     if (guessedWord.length === wordLength) {
       setGuess(guessedWord);
+      setGameObj({
+        ...gameObj,
+        guessedWords: [...gameObj.guessedWords, guessedWord],
+      });
     }
   };
 
