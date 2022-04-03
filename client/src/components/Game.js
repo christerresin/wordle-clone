@@ -92,7 +92,6 @@ function Game() {
     setGameObj({ ...gameObj, gameStart: new Date().getTime() / 1000 });
     setGameId(data.gameId);
     setLoading(false);
-    setgameState('playing');
   };
 
   const handleInputChange = (input) => {
@@ -122,6 +121,8 @@ function Game() {
 
   const handleOnPlayClick = async () => {
     setLoading(true);
+    setgameState('playing');
+
     await startNewGame();
   };
 
@@ -162,6 +163,9 @@ function Game() {
       </div>
     );
   } else if (gameState === 'highscore') {
+    if (loading) {
+      return <Loading />;
+    }
     return (
       <div className='Game'>
         <HighscoresList highscores={highscores} />
