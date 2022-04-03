@@ -10,7 +10,7 @@ function GameOver({ gameObj }) {
         <div>
           Your time was: {(gameObj.gameEnd - gameObj.gameStart).toFixed(0)}s
         </div>
-        <div>Number of guesses: {gameObj.guessedsCount}</div>
+        <div>Number of guesses: {gameObj.guessesCount}</div>
       </div>
       <div className='app__gameover-buttons'>
         <a href='/' className='app__gameover-link'>

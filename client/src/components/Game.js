@@ -56,6 +56,7 @@ function Game() {
       wordLength: wordLength,
       uniqueLetters: uniqueLetters,
       gameId: gameId,
+      guessedWords: guessedWords,
     });
   }, [guessedWords]);
 
