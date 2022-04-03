@@ -55,8 +55,6 @@ function Game() {
       guessesCount: guessedWords.length,
       wordLength: wordLength,
       uniqueLetters: uniqueLetters,
-      gameId: gameId,
-      guessedWords: guessedWords,
     });
   }, [guessedWords]);
 
@@ -72,7 +70,7 @@ function Game() {
   }, [result]);
 
   const handleGuess = async () => {
-    const res = await fetch(`/api/words/${gameId}/${guess}`);
+    const res = await fetch(`/api/words/${gameObj.gameId}/${guess}`);
 
     const data = await res.json();
     setResult(data.message);
@@ -90,8 +88,11 @@ function Game() {
     );
     const data = await res.json();
 
-    setGameObj({ ...gameObj, gameStart: new Date().getTime() / 1000 });
-    setGameId(data.gameId);
+    setGameObj({
+      ...gameObj,
+      gameId: data.gameId,
+      gameStart: new Date().getTime() / 1000,
+    });
     setLoading(false);
   };
 
