@@ -25,14 +25,14 @@ app.use(express.static('public'));
 
 // console.log(await getAllHighscores());
 // deleteAllHighscores();
-// getHighscores('Lisa');
+// getHighscores('BOB');
 
 let games = [
   { gameId: '12312', correctWord: 'NOTCORRECT' },
   { gameId: '12312', correctWord: 'NOTCORRECT' },
 ];
 
-// ROUTES
+// REST ROUTES
 app.get('/', (req, res) => {
   res.sendFile(path.join(__dirname, 'public', 'index.html'));
 });

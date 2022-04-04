@@ -8,14 +8,16 @@
 
     <main>
       <ul class="app__highscores-list">
-        <li class="app__highscores-item">
-          <h3>Player</h3>
-          <h3>Game Duration</h3>
-        </li>
         <% highscores.forEach((highscore) => { %>
         <li class="app__highscores-item">
-          <p><%= highscore.playerId %></p>
-          <p><%= highscore.gameDuration %>s</p>
+          <h3><%= highscore.playerId %></h3>
+          <h3><%= highscore.gameDuration %>s</h3>
+        </li>
+        <li class="app__highscores-item">
+          <span
+            ><%= highscore.wordLength %>-letter word <%= highscore.uniqueLetters
+            === true ? 'with unique letters' : 'with any letters' %></span
+          >
         </li>
         <% }) %>
       </ul>
