@@ -2,12 +2,12 @@ import mongoose from 'mongoose';
 
 const userSchema = new mongoose.Schema({
   playerId: { type: String, required: true },
-  gameDuration: { type: Number, required: false },
-  guessesCount: { type: Number, required: false },
-  wordLength: { type: Number, required: false },
-  correctWord: { type: String, required: false },
-  uniqueLetters: { type: Boolean, required: false },
-  gameId: { type: String, required: false },
+  gameDuration: { type: Number, required: true },
+  guessesCount: { type: Number, required: true },
+  wordLength: { type: Number, required: true },
+  correctWord: { type: String, required: true },
+  uniqueLetters: { type: Boolean, required: true },
+  gameId: { type: String, required: true },
   guessedWords: { type: Array, required: true },
 });
 

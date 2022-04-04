@@ -14,9 +14,7 @@ import {
 } from './db/Controller.js';
 
 const __dirname = path.resolve();
-
 const PORT = process.env.PORT || 5080;
-
 const app = express();
 
 app.set('view engine', 'ejs');
@@ -34,14 +32,21 @@ let games = [
   { gameId: '12312', correctWord: 'NOTCORRECT' },
 ];
 
+// ROUTES
 app.get('/', (req, res) => {
   res.sendFile(path.join(__dirname, 'public', 'index.html'));
 });
 
-// app.get('/api', (req, res) => {
-//   res.json({ message: feedback(guess, correctWord) });
-// });
+app.get('/highscore', async (req, res) => {
+  const highscores = await getAllHighscores();
+  res.render('pages/index', { highscores: highscores });
+});
 
+app.get('/info', (req, res) => {
+  res.sendFile(path.join(__dirname, 'public', 'info.html'));
+});
+
+// API ROUTES
 app.get('/api/words/:gameid/:guess', (req, res) => {
   const correctGameObj = games.find((obj) => {
     return obj.gameId === req.params.gameid;
@@ -65,11 +70,6 @@ app.post('/api/words/:guess-:wordLength-:uniqueLetters', (req, res) => {
   });
 });
 
-app.get('/highscore', async (req, res) => {
-  const highscores = await getAllHighscores();
-  res.render('pages/index', { highscores: highscores });
-});
-
 app.get('/api/highscore', async (req, res) => {
   res.json({ highscores: await getAllHighscores() });
 });
@@ -89,10 +89,6 @@ app.post('/api/highscore', async (req, res) => {
   games.splice(gameIdx, 1);
 
   res.json(playerObj);
-});
-
-app.get('/info', (req, res) => {
-  res.sendFile(path.join(__dirname, 'public', 'info.html'));
 });
 
 app.listen(PORT, () => {

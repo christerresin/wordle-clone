@@ -1,7 +1,6 @@
 import './GameOver.css';
 
 function GameOver({ gameObj }) {
-  console.log(gameObj);
   return (
     <>
       <div className='app__gameover'>

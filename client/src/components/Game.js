@@ -8,6 +8,7 @@ import Dropdown from './Dropdown';
 import ToggleSwitch from './ToggleSwitch';
 import GameOver from './GameOver';
 import Loading from './Loading';
+import Menu from './Menu';
 
 import './Game.css';
 
@@ -23,23 +24,6 @@ function Game() {
   const [loading, setLoading] = useState(true);
   const [highscores, setHighscores] = useState(null);
   const [gameState, setgameState] = useState('start');
-  const [menuItem, setMenuItem] = useState([
-    {
-      label: 'Game',
-      active: true,
-      link: '/',
-    },
-    {
-      label: 'Highscore',
-      active: false,
-      link: '/highscore',
-    },
-    {
-      label: 'Info',
-      active: false,
-      link: '/info',
-    },
-  ]);
 
   useEffect(() => {
     if (!loading) {
@@ -189,18 +173,7 @@ function Game() {
     <div className='Game'>
       <nav>
         <h1>WÖÖÖRDL</h1>
-        <ul className='app__menu'>
-          {menuItem.map((item) => {
-            return (
-              <li
-                className={`app__menu-item ${item.active ? 'selected' : ''}`}
-                key={item.label}
-              >
-                <a href={item.link}>{item.label}</a>
-              </li>
-            );
-          })}
-        </ul>
+        <Menu />
       </nav>
       <div>
         <h3>Configure game</h3>
