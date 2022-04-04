@@ -1,22 +1,4 @@
-function Menu() {
-  const menuItems = [
-    {
-      label: 'Game',
-      active: true,
-      link: '/',
-    },
-    {
-      label: 'Highscore',
-      active: false,
-      link: '/highscore',
-    },
-    {
-      label: 'Info',
-      active: false,
-      link: '/info',
-    },
-  ];
-
+function Menu({ menuItems }) {
   return (
     <>
       <ul className='app__menu'>

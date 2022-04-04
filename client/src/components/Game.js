@@ -24,6 +24,23 @@ function Game() {
   const [loading, setLoading] = useState(true);
   const [highscores, setHighscores] = useState(null);
   const [gameState, setgameState] = useState('start');
+  const [menuItems, setMenuItems] = useState([
+    {
+      label: 'Game',
+      active: true,
+      link: '/',
+    },
+    {
+      label: 'Highscore',
+      active: false,
+      link: '/highscore',
+    },
+    {
+      label: 'Info',
+      active: false,
+      link: '/info',
+    },
+  ]);
 
   useEffect(() => {
     if (!loading) {
@@ -173,7 +190,7 @@ function Game() {
     <div className='Game'>
       <nav>
         <h1>WÖÖÖRDL</h1>
-        <Menu />
+        <Menu menuItems={menuItems} />
       </nav>
       <div>
         <h3>Configure game</h3>
