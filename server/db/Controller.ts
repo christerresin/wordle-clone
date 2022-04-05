@@ -8,7 +8,19 @@ mongoose.connect(dbURI, () => {
   console.log('DB connected');
 });
 
-async function createNewHighscore(playerObj) {
+type Player = {
+  playerId: string;
+  gameStart: number;
+  gameEnd: number;
+  guessesCount: number;
+  wordLength: number;
+  correctWord: string;
+  uniqueLetters: boolean;
+  gameId: string;
+  guessedWords: string[];
+};
+
+async function createNewHighscore(playerObj: Player) {
   const playerId = playerObj.playerId;
   const gameStart = playerObj.gameStart;
   const gameEnd = playerObj.gameEnd;
@@ -32,8 +44,12 @@ async function createNewHighscore(playerObj) {
     });
     await highscore.save();
     console.log('Added new highscore: ' + highscore);
-  } catch (e) {
-    console.log(e.message);
+  } catch (err: unknown) {
+    if (err instanceof Error) {
+      console.log(err.message);
+    } else {
+      console.log('Unexpected error', err);
+    }
   }
 }
 
@@ -45,8 +61,12 @@ async function getAllHighscores() {
       return a.gameDuration.toFixed(0) - b.gameDuration.toFixed(0);
     });
     return highscoresArr;
-  } catch (e) {
-    console.log(e.message);
+  } catch (err: unknown) {
+    if (err instanceof Error) {
+      console.log(err.message);
+    } else {
+      console.log('Unexpected error', err);
+    }
   }
 }
 
@@ -54,17 +74,25 @@ async function deleteAllHighscores() {
   try {
     const highscores = await Highscore.deleteMany({});
     console.log('All Highscore documents deleted');
-  } catch (e) {
-    console.log(e.message);
+  } catch (err: unknown) {
+    if (err instanceof Error) {
+      console.log(err.message);
+    } else {
+      console.log('Unexpected error', err);
+    }
   }
 }
 
-async function getHighscores(playerId) {
+async function getHighscores(playerId: string) {
   try {
     const highscores = await Highscore.find({ playerId: playerId });
     console.log(highscores);
-  } catch (e) {
-    console.log(e.message);
+  } catch (err: unknown) {
+    if (err instanceof Error) {
+      console.log(err.message);
+    } else {
+      console.log('Unexpected error', err);
+    }
   }
 }
 

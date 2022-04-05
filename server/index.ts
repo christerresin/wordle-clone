@@ -13,7 +13,6 @@ import {
   getHighscores,
 } from './db/Controller';
 
-const __dirname = path.resolve();
 const PORT = process.env.PORT || 5080;
 const app = express();
 
@@ -27,10 +26,12 @@ app.use(express.static('public'));
 // deleteAllHighscores();
 // getHighscores('BOB');
 
-let games = [
-  { gameId: '12312', correctWord: 'NOTCORRECT' },
-  { gameId: '12312', correctWord: 'NOTCORRECT' },
-];
+type Game = {
+  gameId: string;
+  correctWord: string;
+};
+
+let games: Game[] = [];
 
 // REST ROUTES
 app.get('/', (req, res) => {
@@ -43,7 +44,7 @@ app.get('/highscore', async (req, res) => {
 });
 
 app.get('/info', (req, res) => {
-  res.sendFile(path.join(__dirname, 'public', 'info.html'));
+  res.sendFile(path.join(__dirname, '../public', 'info.html'));
 });
 
 // API ROUTES
@@ -52,21 +53,24 @@ app.get('/api/words/:gameid/:guess', (req, res) => {
     return obj.gameId === req.params.gameid;
   });
 
-  res.json({ message: feedback(req.params.guess, correctGameObj.correctWord) });
+  if (correctGameObj && correctGameObj.correctWord != undefined) {
+    res.json({
+      message: feedback(req.params.guess, correctGameObj.correctWord),
+    });
+  }
 });
 
 app.post('/api/words/:guess-:wordLength-:uniqueLetters', (req, res) => {
   let wordLength = Number(req.params.wordLength);
   let uniqueLetters = req.params.uniqueLetters === 'false' ? false : true;
-  const correctWord = pickWord(words, wordLength, uniqueLetters);
-  const gameId = crypto.randomUUID();
-  games.push({
-    correctWord: correctWord,
-    gameId: gameId,
-  });
+  const game = {
+    correctWord: pickWord(words, wordLength, uniqueLetters),
+    gameId: crypto.randomUUID(),
+  };
+  games.push(game);
 
   res.json({
-    gameId: gameId,
+    gameId: game.gameId,
   });
 });
 
@@ -79,17 +83,20 @@ app.post('/api/highscore', async (req, res) => {
   const game = games.find((obj) => {
     return obj.gameId === gameId;
   });
-  const playerObj = { ...req.body, correctWord: game.correctWord };
-  console.log(playerObj);
-  await createNewHighscore(playerObj);
 
-  // remove finished game from games Arr
-  const gameIdx = games.findIndex((obj) => {
-    return obj.gameId === gameId;
-  });
-  games.splice(gameIdx, 1);
+  if (game && game.correctWord != undefined) {
+    const playerObj = { ...req.body, correctWord: game.correctWord };
+    console.log(playerObj);
+    await createNewHighscore(playerObj);
 
-  res.json(playerObj);
+    // remove finished game from games Arr
+    const gameIdx = games.findIndex((obj) => {
+      return obj.gameId === gameId;
+    });
+    games.splice(gameIdx, 1);
+
+    res.json(playerObj);
+  }
 });
 
 app.listen(PORT, () => {
