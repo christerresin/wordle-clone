@@ -1,4 +1,4 @@
-function pickWord(wordArr, wordLength = 5, norepeat = false) {
+function pickWord(wordArr: string[], wordLength = 5, norepeat = false) {
   /*
     Needs to return a random word based on array of words, filtered by length and/or repeated letters in the word
     - Verify args are correct
@@ -9,15 +9,10 @@ function pickWord(wordArr, wordLength = 5, norepeat = false) {
   */
 
   let pickedWord = '';
-  let filteredWordsArr = [];
+  let filteredWordsArr: String[] = [];
 
   // Conditionals for args
-  if (
-    wordArr.length < 1 ||
-    (typeof wordArr !== 'object' &&
-      wordLength !== typeof 'number' &&
-      norepeat !== typeof 'boolean')
-  ) {
+  if (wordArr.length < 1 || typeof wordArr !== 'object') {
     return pickedWord;
   }
 
