@@ -3,15 +3,15 @@ import crypto from 'crypto';
 import bodyParser from 'body-parser';
 import path from 'path';
 
-import feedback from './feedback.js';
-import pickWord from './pickWord.js';
-import { words } from './words.js';
+import feedback from './feedback';
+import pickWord from './pickWord';
+import { words } from './words';
 import {
   createNewHighscore,
   getAllHighscores,
   deleteAllHighscores,
   getHighscores,
-} from './db/Controller.js';
+} from './db/Controller';
 
 const __dirname = path.resolve();
 const PORT = process.env.PORT || 5080;

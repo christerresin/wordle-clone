@@ -1,6 +1,6 @@
-import feedback from './server/feedback.js';
-import pickWord from './server/pickWord.js';
-import { words } from './server/words.js';
+import feedback from './server/feedback';
+import pickWord from './server/pickWord';
+import { words } from './server/words';
 
 // console.log(feedback('propp', 'spira'));
 

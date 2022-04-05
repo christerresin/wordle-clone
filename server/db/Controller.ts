@@ -1,6 +1,6 @@
 import mongoose from 'mongoose';
 
-import Highscore from './Highscore.js';
+import Highscore from './Highscore';
 
 // connect to mongoDB
 const dbURI = `mongodb+srv://christerresin:TB8WIHS0PR755uXn@wordledb.phlpc.mongodb.net/wordledb?retryWrites=true&w=majority`;
