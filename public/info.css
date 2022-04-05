@@ -1,3 +1,6 @@
+body {
+  margin: 0;
+}
 .Game {
   background-color: #4059ad;
   min-height: 100vh;
