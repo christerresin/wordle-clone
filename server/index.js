@@ -80,6 +80,7 @@ app.post('/api/highscore', async (req, res) => {
     return obj.gameId === gameId;
   });
   const playerObj = { ...req.body, correctWord: game.correctWord };
+  console.log(playerObj);
   await createNewHighscore(playerObj);
 
   // remove finished game from games Arr

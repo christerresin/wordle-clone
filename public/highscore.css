@@ -55,7 +55,13 @@ h3 {
 
 .app__highscores-list {
   list-style-type: none;
-  width: 20vw;
+  min-width: 20vw;
+}
+
+@media screen and (max-width: 600px) {
+  .app__highscores-list {
+    min-width: 100vw;
+  }
 }
 
 .app__highscores-item {
