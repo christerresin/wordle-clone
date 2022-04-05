@@ -1,4 +1,4 @@
-import pickWord from './server/pickWord';
+import pickWord from '../server/pickWord';
 
 /*
   TEST
@@ -25,10 +25,6 @@ test('returned strings length is 5 and  matches given word length arg of 5', () 
 
 test('returned string has no matching chars if norepeat param is set to ture', () => {
   expect(pickWord(mockWordsFive, 5, true)).toEqual('trust');
-});
-
-test('returned string is empty if no arr of words is passed as first param', () => {
-  expect(pickWord('noArr', 5, true)).toEqual('');
 });
 
 test('returned string is lower cased', () => {

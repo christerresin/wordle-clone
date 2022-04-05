@@ -1,4 +1,4 @@
-import feedback from './server/feedback';
+import feedback from '../server/feedback';
 
 /*
 
@@ -96,14 +96,6 @@ test('if func is case sensitive', () => {
       result: 'correct',
     },
   ]);
-});
-
-test('returned arr is empty if guessed word is not a string', () => {
-  expect(feedback(5, 'test')).toEqual([]);
-});
-
-test('returned arr is empty if answear word is not a string', () => {
-  expect(feedback('test', 3)).toEqual([]);
 });
 
 test('returned arr is empty if guessed string is empty', () => {
