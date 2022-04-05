@@ -8,8 +8,6 @@ function feedback(guessed: string, answear: string) {
 
   // Conditionals for arg strings (length, type, matching length)
   if (
-    typeof guessed !== 'string' ||
-    typeof answear !== 'string' ||
     guessed.length <= 0 ||
     answear.length <= 0 ||
     guessed.length !== answear.length
