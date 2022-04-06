@@ -60,7 +60,7 @@ app.get('/api/words/:gameid/:guess', (req, res) => {
   }
 });
 
-app.post('/api/words/:guess-:wordLength-:uniqueLetters', (req, res) => {
+app.post('/api/words/:wordLength-:uniqueLetters', (req, res) => {
   let wordLength = Number(req.params.wordLength);
   let uniqueLetters = req.params.uniqueLetters === 'false' ? false : true;
   const game = {

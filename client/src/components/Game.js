@@ -14,7 +14,6 @@ import './Game.css';
 
 function Game() {
   const [result, setResult] = useState([]);
-  const [guess, setGuess] = useState(null);
   const [guessedWords, setGuessedWords] = useState([]);
   const [currentGuess, setCurrentGuess] = useState([]);
   const [wordLength, setWordLength] = useState(5);
@@ -43,12 +42,6 @@ function Game() {
   ]);
 
   useEffect(() => {
-    if (!loading) {
-      handleGuess();
-    }
-  }, [guess]);
-
-  useEffect(() => {
     setGameObj({
       ...gameObj,
       playerId: 'UnknownPlayer',
@@ -69,23 +62,22 @@ function Game() {
     }
   }, [result]);
 
-  const handleGuess = async () => {
-    const res = await fetch(`/api/words/${gameObj.gameId}/${guess}`);
+  const handleGuess = async (guessedWord) => {
+    if (!loading) {
+      const res = await fetch(`/api/words/${gameObj.gameId}/${guessedWord}`);
 
-    const data = await res.json();
-    setResult(data.message);
-    guessedWords
-      ? setGuessedWords([...guessedWords, data.message])
-      : setGuessedWords([...data.message]);
+      const data = await res.json();
+      setResult(data.message);
+      guessedWords
+        ? setGuessedWords([...guessedWords, data.message])
+        : setGuessedWords([...data.message]);
+    }
   };
 
   const startNewGame = async () => {
-    const res = await fetch(
-      `/api/words/${guess}-${wordLength}-${uniqueLetters}`,
-      {
-        method: 'POST',
-      }
-    );
+    const res = await fetch(`/api/words/${wordLength}-${uniqueLetters}`, {
+      method: 'POST',
+    });
     const data = await res.json();
 
     setGameObj({
@@ -100,7 +92,7 @@ function Game() {
   const handleInputChange = (input) => {
     let guessedWord = input;
     if (guessedWord.length === wordLength) {
-      setGuess(guessedWord);
+      handleGuess(guessedWord);
       setGameObj({
         ...gameObj,
         guessedWords: [...gameObj.guessedWords, guessedWord],
