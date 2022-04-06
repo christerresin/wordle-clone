@@ -43,23 +43,23 @@ function Game() {
     },
   ]);
 
-  useEffect(() => {
-    if (
-      result.filter((obj) => {
-        return obj.result === 'correct';
-      }).length === gameObj.wordLength
-    ) {
-      setIsWinner(true);
-      setGameObj({ ...gameObj, gameEnd: new Date().getTime() / 1000 });
-    }
-  }, [result]);
+  // useEffect(() => {
+  //   if (
+  //     result.filter((obj) => {
+  //       return obj.result === 'correct';
+  //     }).length === gameObj.wordLength
+  //   ) {
+  //     setIsWinner(true);
+  //     setGameObj({ ...gameObj, gameEnd: new Date().getTime() / 1000 });
+  //   }
+  // }, [result]);
 
   const handleGuess = async (guessedWord) => {
     if (!loading) {
       const res = await fetch(`/api/words/${gameObj.gameId}/${guessedWord}`);
 
       const data = await res.json();
-      setResult(data.message);
+      // setResult(data.message);
       setGameObj({
         ...gameObj,
         guessedWords: [...gameObj.guessedWords, guessedWord],
@@ -68,6 +68,26 @@ function Game() {
       guessedWords
         ? setGuessedWords([...guessedWords, data.message])
         : setGuessedWords([...data.message]);
+      // Check if word is correct and set Winner
+      handleCorrectWord(data.message, guessedWord);
+    }
+
+    console.log(gameObj);
+  };
+
+  const handleCorrectWord = async (resultArr, guessedWord) => {
+    if (
+      resultArr.filter((obj) => {
+        return obj.result === 'correct';
+      }).length === gameObj.wordLength
+    ) {
+      setIsWinner(true);
+      setGameObj({
+        ...gameObj,
+        guessedWords: [...gameObj.guessedWords, guessedWord],
+        guessesCount: gameObj.guessesCount + 1,
+        gameEnd: new Date().getTime() / 1000,
+      });
     }
   };
 
