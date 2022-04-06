@@ -16,9 +16,11 @@ function Game() {
   const [result, setResult] = useState([]);
   const [guessedWords, setGuessedWords] = useState([]);
   const [currentGuess, setCurrentGuess] = useState([]);
-  const [wordLength, setWordLength] = useState(5);
-  const [uniqueLetters, setUniqueLetters] = useState(false);
-  const [gameObj, setGameObj] = useState();
+  const [gameObj, setGameObj] = useState({
+    uniqueLetters: false,
+    guessesCount: 0,
+    wordLength: 5,
+  });
   const [isWinner, setIsWinner] = useState(false);
   const [loading, setLoading] = useState(true);
   const [highscores, setHighscores] = useState(null);
@@ -42,20 +44,10 @@ function Game() {
   ]);
 
   useEffect(() => {
-    setGameObj({
-      ...gameObj,
-      playerId: 'UnknownPlayer',
-      guessesCount: guessedWords.length,
-      wordLength: wordLength,
-      uniqueLetters: uniqueLetters,
-    });
-  }, [guessedWords]);
-
-  useEffect(() => {
     if (
       result.filter((obj) => {
         return obj.result === 'correct';
-      }).length === wordLength
+      }).length === gameObj.wordLength
     ) {
       setIsWinner(true);
       setGameObj({ ...gameObj, gameEnd: new Date().getTime() / 1000 });
@@ -68,6 +60,11 @@ function Game() {
 
       const data = await res.json();
       setResult(data.message);
+      setGameObj({
+        ...gameObj,
+        guessedWords: [...gameObj.guessedWords, guessedWord],
+        guessesCount: gameObj.guessesCount + 1,
+      });
       guessedWords
         ? setGuessedWords([...guessedWords, data.message])
         : setGuessedWords([...data.message]);
@@ -75,9 +72,12 @@ function Game() {
   };
 
   const startNewGame = async () => {
-    const res = await fetch(`/api/words/${wordLength}-${uniqueLetters}`, {
-      method: 'POST',
-    });
+    const res = await fetch(
+      `/api/words/${gameObj.wordLength}-${gameObj.uniqueLetters}`,
+      {
+        method: 'POST',
+      }
+    );
     const data = await res.json();
 
     setGameObj({
@@ -91,12 +91,8 @@ function Game() {
 
   const handleInputChange = (input) => {
     let guessedWord = input;
-    if (guessedWord.length === wordLength) {
+    if (guessedWord.length === gameObj.wordLength) {
       handleGuess(guessedWord);
-      setGameObj({
-        ...gameObj,
-        guessedWords: [...gameObj.guessedWords, guessedWord],
-      });
     }
   };
 
@@ -111,11 +107,11 @@ function Game() {
   };
 
   const handleUniqueLetters = () => {
-    setUniqueLetters(!uniqueLetters);
+    setGameObj({ ...gameObj, uniqueLetters: !gameObj.uniqueLetters });
   };
 
   const handleWordLength = (value) => {
-    setWordLength(value);
+    setGameObj({ ...gameObj, wordLength: value });
   };
 
   const handleOnPlayClick = async () => {
@@ -141,7 +137,7 @@ function Game() {
       <div className='Game'>
         <WordsList
           guessedWords={guessedWords}
-          wordLength={wordLength}
+          wordLength={gameObj.wordLength}
           currentGuess={currentGuess}
           isWinner={isWinner}
         />
@@ -154,7 +150,7 @@ function Game() {
         ) : (
           <WordInput
             handleInputChange={handleInputChange}
-            wordLength={wordLength}
+            wordLength={gameObj.wordLength}
             result={result}
             handleCurrentGuess={handleCurrentGuess}
           />
@@ -186,7 +182,10 @@ function Game() {
       </nav>
       <div>
         <h3>Configure game</h3>
-        <Dropdown wordLength={wordLength} handleWordLength={handleWordLength} />
+        <Dropdown
+          wordLength={gameObj.wordLength}
+          handleWordLength={handleWordLength}
+        />
         <ToggleSwitch
           label='Only unique letters?'
           handleUniqueLetters={handleUniqueLetters}
