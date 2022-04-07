@@ -4,7 +4,7 @@ function GameOver({ gameObj }) {
   return (
     <>
       <div className='app__gameover'>
-        <h2>Winner!</h2>
+        <h1>Winner!</h1>
         <div>{gameObj.playerId.toUpperCase()}</div>
         <div>
           Your time was: {(gameObj.gameEnd - gameObj.gameStart).toFixed(0)}s

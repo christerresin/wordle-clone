@@ -122,8 +122,8 @@ function Game() {
     setCurrentGuess(currentGuessArr);
   };
 
-  const handleNewHighscoreEntry = (playerObj) => {
-    setGameObj(playerObj);
+  const handleNewHighscoreEntry = (serverGameObj) => {
+    setGameObj(serverGameObj);
   };
 
   if (gameState === 'playing') {

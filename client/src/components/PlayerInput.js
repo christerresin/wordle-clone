@@ -15,8 +15,8 @@ function PlayerInput(props) {
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(gameObj),
     });
-    const data = await res.json();
-    props.handleNewHighscoreEntry(data);
+    const serverGameObj = await res.json();
+    props.handleNewHighscoreEntry(serverGameObj);
     props.loadHighscores(true);
   };
 
