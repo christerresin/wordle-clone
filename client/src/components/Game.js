@@ -13,7 +13,6 @@ import Menu from './Menu';
 import './Game.css';
 
 function Game() {
-  const [result, setResult] = useState([]);
   const [guessedWords, setGuessedWords] = useState([]);
   const [currentGuess, setCurrentGuess] = useState([]);
   const [gameObj, setGameObj] = useState({
@@ -43,23 +42,11 @@ function Game() {
     },
   ]);
 
-  // useEffect(() => {
-  //   if (
-  //     result.filter((obj) => {
-  //       return obj.result === 'correct';
-  //     }).length === gameObj.wordLength
-  //   ) {
-  //     setIsWinner(true);
-  //     setGameObj({ ...gameObj, gameEnd: new Date().getTime() / 1000 });
-  //   }
-  // }, [result]);
-
   const handleGuess = async (guessedWord) => {
     if (!loading) {
       const res = await fetch(`/api/words/${gameObj.gameId}/${guessedWord}`);
 
       const data = await res.json();
-      // setResult(data.message);
       setGameObj({
         ...gameObj,
         guessedWords: [...gameObj.guessedWords, guessedWord],
@@ -171,7 +158,6 @@ function Game() {
           <WordInput
             handleInputChange={handleInputChange}
             wordLength={gameObj.wordLength}
-            result={result}
             handleCurrentGuess={handleCurrentGuess}
           />
         )}
