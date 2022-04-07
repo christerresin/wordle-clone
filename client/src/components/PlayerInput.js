@@ -26,10 +26,14 @@ function PlayerInput(props) {
 
   return (
     <>
-      <h3>What is your alteregos name?!</h3>
-      <input type='text' onChange={handleOnChange} />
+      <h2>YOU WON!</h2>
+      <input
+        type='text'
+        onChange={handleOnChange}
+        placeholder='Enter your name'
+      />
       <button className='app__playerinput-link' onClick={handleOnClick}>
-        REGISTER
+        REGISTER HIGHSCORE
       </button>
     </>
   );

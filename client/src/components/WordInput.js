@@ -22,6 +22,7 @@ function WordInput(props) {
       type='text'
       value={guess}
       onChange={handleOnChange}
+      placeholder='Enter guess'
     />
   );
 }
