@@ -22,6 +22,7 @@
     "testEnvironment": "node"
   },
   "scripts": {
+    "preinstall": "npm --prefix ./client install ./client && npm --prefix ./client run build ./client",
     "start": "ts-node server/index.ts",
     "dev": "ts-node-dev server/index.ts",
     "test": "jest",
