@@ -29,6 +29,7 @@ app.use(express.static('public'));
 type Game = {
   gameId: string;
   correctWord: string;
+  gameStart: number;
 };
 
 let games: Game[] = [];
@@ -66,6 +67,7 @@ app.post('/api/words/:wordLength-:uniqueLetters', (req, res) => {
   const game = {
     correctWord: pickWord(words, wordLength, uniqueLetters),
     gameId: crypto.randomUUID(),
+    gameStart: new Date().getTime() / 1000,
   };
   games.push(game);
 

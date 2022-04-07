@@ -128,6 +128,7 @@ function Game() {
 
   const handleNewPlayerId = (playerId) => {
     setGameObj({ ...gameObj, playerId: playerId });
+    console.log(gameObj);
   };
 
   const handleCurrentGuess = (currentGuessArr) => {
