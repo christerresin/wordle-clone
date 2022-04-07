@@ -5,24 +5,26 @@ import './PlayerInput.css';
 function PlayerInput(props) {
   const [playerId, setPlayerId] = useState();
 
-  function handleOnClick() {
+  const handleOnClick = async () => {
     const gameObj = {
       ...props.gameObj,
       playerId: playerId,
     };
-    fetch(`/api/highscore`, {
+    const res = await fetch(`/api/highscore`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(gameObj),
-    }).then((response) => response.json());
+    });
+    const serverGameObj = await res.json();
+    props.handleNewHighscoreEntry(serverGameObj);
     props.loadHighscores(true);
-  }
+  };
 
-  function handleOnChange(e) {
+  const handleOnChange = (e) => {
     const newPlayerId = e.target.value;
     setPlayerId(newPlayerId);
     props.handleNewPlayerId(newPlayerId);
-  }
+  };
 
   return (
     <>
