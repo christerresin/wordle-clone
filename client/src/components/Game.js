@@ -54,7 +54,7 @@ function Game() {
     }
   };
 
-  const handleCorrectWord = async (resultArr, guessedWord) => {
+  const handleCorrectWord = async (resultArr) => {
     if (
       resultArr.filter((obj) => {
         return obj.result === 'correct';
@@ -98,7 +98,9 @@ function Game() {
   };
 
   const handleUniqueLetters = () => {
-    setGameObj({ ...gameObj, uniqueLetters: !gameObj.uniqueLetters });
+    setGameObj((prevState) => {
+      return { ...gameObj, uniqueLetters: !prevState.uniqueLetters };
+    });
   };
 
   const handleWordLength = (value) => {
