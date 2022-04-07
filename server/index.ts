@@ -30,6 +30,8 @@ type Game = {
   gameId: string;
   correctWord: string;
   gameStart: number;
+  guessedWords: string[];
+  guessesCount: number;
 };
 
 let games: Game[] = [];
@@ -50,11 +52,15 @@ app.get('/info', (req, res) => {
 
 // API ROUTES
 app.get('/api/words/:gameid/:guess', (req, res) => {
+  const newGuess = req.params.guess;
   const correctGameObj = games.find((obj) => {
     return obj.gameId === req.params.gameid;
   });
 
   if (correctGameObj && correctGameObj.correctWord != undefined) {
+    correctGameObj.guessedWords.push(newGuess);
+    correctGameObj.guessesCount += 1;
+
     res.json({
       message: feedback(req.params.guess, correctGameObj.correctWord),
     });
@@ -68,6 +74,8 @@ app.post('/api/words/:wordLength-:uniqueLetters', (req, res) => {
     correctWord: pickWord(words, wordLength, uniqueLetters),
     gameId: crypto.randomUUID(),
     gameStart: new Date().getTime() / 1000,
+    guessedWords: [],
+    guessesCount: 0,
   };
   games.push(game);
 
@@ -93,8 +101,10 @@ app.post('/api/highscore', async (req, res) => {
       correctWord: game.correctWord,
       gameEnd: gameEnd,
       gameStart: game.gameStart,
+      guessesCount: game.guessesCount,
+      guessedWords: game.guessedWords,
     };
-    console.log(playerObj);
+
     await createNewHighscore(playerObj);
 
     // remove finished game from games Arr

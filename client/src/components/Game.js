@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 
 import WordsList from './WordsList';
 import WordInput from './WordInput';
@@ -17,7 +17,6 @@ function Game() {
   const [currentGuess, setCurrentGuess] = useState([]);
   const [gameObj, setGameObj] = useState({
     uniqueLetters: false,
-    guessesCount: 0,
     wordLength: 5,
   });
   const [isWinner, setIsWinner] = useState(false);
@@ -45,13 +44,8 @@ function Game() {
   const handleGuess = async (guessedWord) => {
     if (!loading) {
       const res = await fetch(`/api/words/${gameObj.gameId}/${guessedWord}`);
-
       const data = await res.json();
-      setGameObj({
-        ...gameObj,
-        guessedWords: [...gameObj.guessedWords, guessedWord],
-        guessesCount: gameObj.guessesCount + 1,
-      });
+
       guessedWords
         ? setGuessedWords([...guessedWords, data.message])
         : setGuessedWords([...data.message]);
@@ -67,11 +61,6 @@ function Game() {
       }).length === gameObj.wordLength
     ) {
       setIsWinner(true);
-      setGameObj({
-        ...gameObj,
-        guessedWords: [...gameObj.guessedWords, guessedWord],
-        guessesCount: gameObj.guessesCount + 1,
-      });
     }
   };
 
@@ -87,7 +76,6 @@ function Game() {
     setGameObj({
       ...gameObj,
       gameId: data.gameId,
-      guessedWords: [],
     });
     setLoading(false);
   };
@@ -133,7 +121,6 @@ function Game() {
   };
 
   const handleNewHighscoreEntry = (playerObj) => {
-    console.log(playerObj);
     setGameObj(playerObj);
   };
 
