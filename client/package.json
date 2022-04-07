@@ -16,10 +16,9 @@
   },
   "scripts": {
     "start": "react-scripts start",
-    "build": "react-scripts build",
+    "build": "cross-env react-scripts build && mv build ../public/",
     "test": "react-scripts test",
-    "eject": "react-scripts eject",
-    "postbuild": "cp .\\build\\ ..\\public\\ && cp .\\build\\static\\js\\ ..\\public\\static\\js\\ && cp .\\build\\static\\js\\ ..\\public\\static\\js\\ || copy .\\build\\ ..\\public\\ && copy .\\build\\static\\js\\ ..\\public\\static\\js\\ && copy .\\build\\static\\css\\ ..\\public\\static\\css\\"
+    "eject": "react-scripts eject"
   },
   "eslintConfig": {
     "extends": [
@@ -40,6 +39,7 @@
     ]
   },
   "devDependencies": {
-    "copyfiles": "^2.4.1"
+    "copyfiles": "^2.4.1",
+    "cross-env": "^7.0.3"
   }
 }
