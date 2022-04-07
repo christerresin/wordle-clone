@@ -3,88 +3,63 @@
   <title>Highscores</title>
   <link rel="stylesheet" href="info.css" />
 </head>
-<div class="Game">
-  <header>
-    <nav>
-      <h1 class="app__logo">WÖÖÖRDL</h1>
-      <ul class="app__menu">
-        <li class="app__menu-item"><a href="/">Game</a></li>
-        <li class="app__menu-item">
-          <a href="/highscore">Highscore</a>
-        </li>
-        <li class="app__menu-item selected"><a href="/info">Info</a></li>
-      </ul>
-    </nav>
-  </header>
-  <body>
-    <h1>Information</h1>
-    <div class="info-box">
-      <div class="info-container">
-        <h3>Tech used for Game/App</h3>
-        <span
-          >Based on a create-react-app boilerplate. Using hooks for
-          statemanegement. The React frontend communicates with an API backend
-          to start a configured game, make guesses and get result</span
-        >
+<div class="App">
+  <div class="Game">
+    <header>
+      <nav>
+        <h1 class="app__logo">WÖÖÖRDL</h1>
+        <ul class="app__menu">
+          <li class="app__menu-item"><a href="/">Game</a></li>
+          <li class="app__menu-item">
+            <a href="/highscore">Highscore</a>
+          </li>
+          <li class="app__menu-item selected"><a href="/info">Info</a></li>
+        </ul>
+      </nav>
+    </header>
+    <body>
+      <h1>Information</h1>
+
+      <div class="info-box">
+        <div class="info-container">
+          <h3>Frontend</h3>
+          <p>
+            The app/game is built with React. Based on a create-react-app
+            boilerplate, building upon the shoulders of giants with hooks, props
+            and callback functions for state management. Using functional
+            components for simplicty and becasue the React community is leaning
+            towards functional Components and not class based Components. The
+            React frontend communicates with a API to start a configured game,
+            make guesses and get result.
+          </p>
+          <p>
+            While building the frontend React app i was using alot of state and
+            useEffect. After getting the game up and running i started to
+            refactor the frontend code, removing useEffects to avoid dirived
+            state. While thinking over and redesigning state and the flow of
+            information i started moving more of the logic to the backend.
+          </p>
+        </div>
       </div>
-    </div>
-    <div class="info-box">
-      <div class="info-container">
-        <h3>Tech used for Highscore page</h3>
-        <span
-          >The highscores page is server side rendered with Embedded JavaScript
-          as template engine.
-        </span>
+      <div class="info-box">
+        <div class="info-container">
+          <h3>Backend/API</h3>
+          <p>
+            The backend is built with NodeJS using the framework Express to get
+            a robust and fast server up. Using RESTful routing for both pages
+            and API resources. A goal for the project was having the highscore
+            page server-side rendered. I chose Embedded JavaScript (EJS)
+            templating language to gengerate HTML with JavaScript for this.
+          </p>
+          <p>
+            When converting the backend to TypeScript a couldnt really get
+            nodemon watching for dev script. Found and tested an alternative,
+            "ts-node-dev". While completing the TS conversion of the backend i
+            recon i killed all the backend tests. Modified package.json and get
+            ts-jest up and running after some refactoring in the tests.
+          </p>
+        </div>
       </div>
-    </div>
-    <div class="info-box">
-      <div class="info-container">
-        <h3>Tech used for Information page</h3>
-        <span
-          >Info page is a static site with just HTML and CSS. Was considering
-          using a framework for styling</span
-        >
-      </div>
-    </div>
-    <div class="info-box">
-      <div class="info-container">
-        <h3>Tech used for frontend</h3>
-        <span>
-          The app/game is built with React. Based on a create-react-app
-          boilerplate, building upon the shoulders of giants. Using hooks, props
-          and callback functions for statemanegement. Using functional
-          components For simplicty and the React community is leaning towrds
-          functional Components and not class based Components. The React
-          frontend communicates with a API to start a configured game, make
-          guesses and get result.
-        </span>
-        <span>
-          When converting the backend to TypeScript a couldnt really get nodemon
-          watching for dev script. Found and tested an alternative,
-          "ts-node-dev"
-        </span>
-      </div>
-    </div>
-    <div class="info-box">
-      <div class="info-container">
-        <h3>Tech used for backend</h3>
-        <span>
-          The backend is built with NodeJS using the framework Express to get a
-          robust and fast server up. Using RESTful routing for both pages and
-          API resources. A goal for the project was having the highscore page
-          server-side rendered. I chose Embedded JavaScript (EJS) templating
-          language to gengerate HTML with JavaScript for this.
-        </span>
-        <span>
-          When converting the backend to TypeScript a couldnt really get nodemon
-          watching for dev script. Found and tested an alternative,
-          "ts-node-dev".
-        </span>
-        <span>
-          After the lecture 2022-04-06 on the topic of useEffect and how that
-          creats dirived state i have refactored the app.
-        </span>
-      </div>
-    </div>
-  </body>
+    </body>
+  </div>
 </div>
