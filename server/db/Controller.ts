@@ -21,26 +21,10 @@ type Player = {
 };
 
 async function createNewHighscore(playerObj: Player) {
-  const playerId = playerObj.playerId;
-  const gameStart = playerObj.gameStart;
-  const gameEnd = playerObj.gameEnd;
-  const guessesCount = playerObj.guessedWords.length;
-  const wordLength = playerObj.wordLength;
-  const correctWord = playerObj.correctWord;
-  const uniqueLetters = playerObj.uniqueLetters;
-  const gameId = playerObj.gameId;
-  const guessedWords = playerObj.guessedWords;
   try {
-    const gameDuration = gameEnd - gameStart;
     const highscore = new Highscore({
-      playerId: playerId,
-      gameDuration: gameDuration.toFixed(0),
-      guessesCount: guessesCount,
-      wordLength: wordLength,
-      correctWord: correctWord,
-      uniqueLetters: uniqueLetters,
-      gameId: gameId,
-      guessedWords: guessedWords,
+      ...playerObj,
+      gameDuration: (playerObj.gameEnd - playerObj.gameStart).toFixed(0),
     });
     await highscore.save();
     console.log('Added new highscore: ' + highscore);
