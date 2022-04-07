@@ -22,9 +22,9 @@ function Game() {
   });
   const [isWinner, setIsWinner] = useState(false);
   const [loading, setLoading] = useState(true);
-  const [highscores, setHighscores] = useState(null);
+  const [highscores, setHighscores] = useState();
   const [gameState, setgameState] = useState('start');
-  const [menuItems, setMenuItems] = useState([
+  const menuItems = [
     {
       label: 'Game',
       active: true,
@@ -40,7 +40,7 @@ function Game() {
       active: false,
       link: '/info',
     },
-  ]);
+  ];
 
   const handleGuess = async (guessedWord) => {
     if (!loading) {
@@ -58,8 +58,6 @@ function Game() {
       // Check if word is correct and set Winner
       handleCorrectWord(data.message, guessedWord);
     }
-
-    console.log(gameObj);
   };
 
   const handleCorrectWord = async (resultArr, guessedWord) => {
