@@ -81,13 +81,19 @@ app.get('/api/highscore', async (req, res) => {
 });
 
 app.post('/api/highscore', async (req, res) => {
+  const gameEnd = new Date().getTime() / 1000;
   const gameId = req.body.gameId;
   const game = games.find((obj) => {
     return obj.gameId === gameId;
   });
 
   if (game && game.correctWord != undefined) {
-    const playerObj = { ...req.body, correctWord: game.correctWord };
+    const playerObj = {
+      ...req.body,
+      correctWord: game.correctWord,
+      gameEnd: gameEnd,
+      gameStart: game.gameStart,
+    };
     console.log(playerObj);
     await createNewHighscore(playerObj);
 

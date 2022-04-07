@@ -71,7 +71,6 @@ function Game() {
         ...gameObj,
         guessedWords: [...gameObj.guessedWords, guessedWord],
         guessesCount: gameObj.guessesCount + 1,
-        gameEnd: new Date().getTime() / 1000,
       });
     }
   };
@@ -88,7 +87,6 @@ function Game() {
     setGameObj({
       ...gameObj,
       gameId: data.gameId,
-      gameStart: new Date().getTime() / 1000,
       guessedWords: [],
     });
     setLoading(false);
@@ -128,11 +126,15 @@ function Game() {
 
   const handleNewPlayerId = (playerId) => {
     setGameObj({ ...gameObj, playerId: playerId });
-    console.log(gameObj);
   };
 
   const handleCurrentGuess = (currentGuessArr) => {
     setCurrentGuess(currentGuessArr);
+  };
+
+  const handleNewHighscoreEntry = (playerObj) => {
+    console.log(playerObj);
+    setGameObj(playerObj);
   };
 
   if (gameState === 'playing') {
@@ -152,6 +154,7 @@ function Game() {
             gameObj={gameObj}
             loadHighscores={loadHighscores}
             handleNewPlayerId={handleNewPlayerId}
+            handleNewHighscoreEntry={handleNewHighscoreEntry}
           />
         ) : (
           <WordInput
