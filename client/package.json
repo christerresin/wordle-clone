@@ -16,7 +16,8 @@
   },
   "scripts": {
     "start": "react-scripts start",
-    "build": "cross-env react-scripts build && mv build ../public/",
+    "oldbuild": "cross-env react-scripts build && mv build ../public/",
+    "build": "cross-env BUILD_PATH='../public/build' react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
