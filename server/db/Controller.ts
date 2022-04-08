@@ -1,9 +1,11 @@
 import mongoose from 'mongoose';
+import dotenv from 'dotenv';
+dotenv.config();
 
 import Highscore from './Highscore';
 
 // connect to mongoDB
-const dbURI = `mongodb+srv://christerresin:TB8WIHS0PR755uXn@wordledb.phlpc.mongodb.net/wordledb?retryWrites=true&w=majority`;
+const dbURI = `mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASS}@wordledb.phlpc.mongodb.net/wordledb?retryWrites=true&w=majority`;
 mongoose.connect(dbURI, () => {
   console.log('DB connected');
 });
